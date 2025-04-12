@@ -1,0 +1,3 @@
+function eecho() {
+    echo "$sz"
+}
