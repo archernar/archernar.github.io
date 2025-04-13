@@ -57,6 +57,9 @@
 
     <div class="code-container">
         <pre>
+function core.print_info_fn() {
+	core.print_info "${FUNCNAME[1]}()${msg:+": "}$msg"
+}
 
         </pre>
     </div>
