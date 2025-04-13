@@ -1,33 +1,63 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="date" content=''>
-    <title>README</title>
-    <link rel="stylesheet" href="markdown.css">
-  </head>
-  <body>
-      <!--
-          https://github.com/sindresorhus/github-markdown-css
-      -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code</title>
     <style>
-	.markdown-body {
-		box-sizing: border-box;
-		min-width: 200px;
-		max-width: 980px;
-		margin: 0 auto;
-		padding: 45px;
-	}
+        body {
+            background-color: #1e1e1e; /* Dark background for the page */
+            color: #d4d4d4; /* Light text color for the page */
+        }
 
-	@media (max-width: 767px) {
-		.markdown-body {
-			padding: 15px;
-		}
-	}
-</style>
-<article class="markdown-body">
-	<h1>Basics</h1>
-	<p><table>
+        .code-container {
+            background-color: #252526; /* Darker background for the code block */
+            border: 1px solid #333; /* Dark gray border */
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: monospace, sans-serif;
+            font-size: 18px;
+            line-height: 1.4;
+        }
+
+        .code-container pre {
+            margin: 0;
+        }
+
+        .comment {
+            color: #6a9955; /* Green for comments */
+        }
+
+        .keyword {
+            color: #569cd6; /* Light blue for keywords */
+            font-weight: bold;
+        }
+
+        .string {
+            color: #ce9178; /* Orange/brown for strings */
+        }
+
+        .number {
+            color: #b5cea8; /* Light green for numbers */
+        }
+
+        .class-name {
+            color: #4ec9b0; /* Cyan for class names */
+        }
+
+        .method-name {
+            color: #dcdcaa; /* Yellow for method names */
+        }
+    </style>
+</head>
+<body>
+    <a href='https://archernar.github.io/files/index.html'>home</a><br>
+    <h1>Code Library</h1>
+
+    <div class="code-container">
+        <pre>
+<table>
 <thead>
 <tr class="header">
 <th>—————————————-</th>
@@ -184,7 +214,9 @@
 <td><a href="https://archernar.github.io/files/warn.html">warn.html</a></td>
 </tr>
 </tbody>
-</table></p>
-</article>
-  </body>
+</table>
+
+        </pre>
+    </div>
+</body>
 </html>
