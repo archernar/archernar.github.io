@@ -1,2 +1,4 @@
 function fecho() {
 }
+function fecho() {
+}

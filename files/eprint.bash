@@ -1,2 +1,4 @@
 function eprint() {
 }
+function eprint() {
+}
