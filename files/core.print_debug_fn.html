@@ -53,10 +53,13 @@
 </head>
 <body>
     <a href='https://archernar.github.io/files/index.html'>home</a><br>
-    <h1>Code</h1>
+    <h1>Code Library</h1>
 
     <div class="code-container">
         <pre>
+function core.print_debug_fn() {
+	core.print_debug "${FUNCNAME[1]}()${msg:+": "}$msg"
+}
 function core.print_debug_fn() {
 	core.print_debug "${FUNCNAME[1]}()${msg:+": "}$msg"
 }

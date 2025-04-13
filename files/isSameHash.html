@@ -53,10 +53,19 @@
 </head>
 <body>
     <a href='https://archernar.github.io/files/index.html'>home</a><br>
-    <h1>Code</h1>
+    <h1>Code Library</h1>
 
     <div class="code-container">
         <pre>
+function isSameHash() {
+    local tmp=/tmp/HASHCHECK_$$
+    local CH=$(md5sum "$filename" | awk '{print $1}')
+    if [[ "$CH" == "$OH" ]]; then
+        echo "1"
+    else
+        echo "0"
+    fi
+}
 function isSameHash() {
     local tmp=/tmp/HASHCHECK_$$
     local CH=$(md5sum "$filename" | awk '{print $1}')

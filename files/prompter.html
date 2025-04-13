@@ -53,10 +53,18 @@
 </head>
 <body>
     <a href='https://archernar.github.io/files/index.html'>home</a><br>
-    <h1>Code</h1>
+    <h1>Code Library</h1>
 
     <div class="code-container">
         <pre>
+function prompter() {
+  read -p "$question (default: $default): " response
+  if [ -z "$response" ]; then
+    echo "$default"
+  else
+    echo "$response"
+  fi
+}
 function prompter() {
   read -p "$question (default: $default): " response
   if [ -z "$response" ]; then
