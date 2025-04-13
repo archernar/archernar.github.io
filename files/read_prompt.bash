@@ -1,1 +1,2 @@
+function read_prompt() {
 }

@@ -1,3 +1,4 @@
+function padout_file_lines() {
   local tmp1=$(mktemp)
   local tmp2=$(mktemp)
   rm -f "$tmp1" >/dev/null 2>&1

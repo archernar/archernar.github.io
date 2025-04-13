@@ -1,3 +1,4 @@
+function backup_file() {
   local timestamp=$(date +%Y%m%d%H%M%S)
   local backup_filename="${filename##*/}.backup.${timestamp}" # Extract filename only
   local backup_path="${backup_dir}/${backup_filename}"

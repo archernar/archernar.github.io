@@ -1,3 +1,4 @@
+function trim_leading_whitespace_file() {
   local sz=""
 
   if [[ -z "$filename" ]]; then

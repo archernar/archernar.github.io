@@ -1,2 +1,3 @@
+function contains() {
   [[ "$string" == *"$substring"* ]]
 }

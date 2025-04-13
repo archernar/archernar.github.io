@@ -1,3 +1,4 @@
+function split_file_n() {
   local prefix="${3:-split_}" # Default prefix is "split_"
 
   if [[ -z "$input_file" || -z "$num_files" ]]; then

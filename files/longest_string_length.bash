@@ -1,3 +1,4 @@
+function longest_string_length() {
   local current_length
   local line
 

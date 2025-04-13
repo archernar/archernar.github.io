@@ -1,3 +1,4 @@
+function justify_file() {
 
   if [[ -z "$filename" ]]; then
     echo "Truncate Error: Filename not provided."

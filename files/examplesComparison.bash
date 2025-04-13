@@ -1,3 +1,4 @@
+function examplesComparison() {
 
     # String Comparisons
 

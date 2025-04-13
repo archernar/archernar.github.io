@@ -1,3 +1,4 @@
+function repeat_char() {
   local result=""
 
   if [[ -z "$char" || -z "$count" ]]; then

@@ -1,3 +1,4 @@
+function core.panic() {
 	local code='1'
 	if [[ $arg1 =~ [0-9]+ ]]; then
 		code=$1

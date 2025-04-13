@@ -1,3 +1,4 @@
+function justify_line() {
 
     local tmp1=$(mktemp)
     echo "$1" | gawk -v num=$2 '

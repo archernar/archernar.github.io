@@ -1,3 +1,4 @@
+function sort_file() {
 
   if [[ -z "$filename" ]]; then
     fecho "Error: Filename not provided."

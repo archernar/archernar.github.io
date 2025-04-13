@@ -1,3 +1,4 @@
+function string_after_file_lines() {
 
   if [[ -z "$filename" ]]; then
     echo "string_before Error: Filename not provided."

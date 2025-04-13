@@ -1,3 +1,4 @@
+function alpha_normal2() {
   echo "$FUNCNAME : STR ******************************************************************************"
   local tmp1=$(mktemp)
   local tmp2=$(mktemp)

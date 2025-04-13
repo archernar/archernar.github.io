@@ -1,3 +1,4 @@
+function abspath() {
   if [[ -z "$path" ]]; then
     pwd
   else

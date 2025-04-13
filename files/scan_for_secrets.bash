@@ -1,3 +1,4 @@
+function scan_for_secrets() {
 
   if [[ -z "$file" ]]; then
     echo "Usage: scan_for_secrets <file>"

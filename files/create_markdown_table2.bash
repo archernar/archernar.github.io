@@ -1,3 +1,4 @@
+function create_markdown_table2() {
   local tmp=$(mktemp)
   local LEN=""
   local STRING=""

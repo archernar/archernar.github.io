@@ -1,3 +1,4 @@
+function indent_file() {
 
   if [[ -z "$filename" ]]; then
     fecho "Error: Filename not provided."

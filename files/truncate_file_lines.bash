@@ -1,3 +1,4 @@
+function truncate_file_lines() {
 
   if [[ -z "$filename" ]]; then
     echo "Truncate Error: Filename not provided."

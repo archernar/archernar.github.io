@@ -1,3 +1,4 @@
+function array_contains() {
   shift
   local haystack=("${@}")
   local found=0
