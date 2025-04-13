@@ -52,11 +52,15 @@
     </style>
 </head>
 <body>
-
+    <a href='https://archernar.github.io/files/index.html'>home</a><br>
     <h1>Code</h1>
 
     <div class="code-container">
         <pre>
+function collapse_pwd() {
+    curr_pwd=$(pwd | sed -e "s,^$HOME,~,")
+    echo $curr_pwd
+}
 function collapse_pwd() {
     curr_pwd=$(pwd | sed -e "s,^$HOME,~,")
     echo $curr_pwd

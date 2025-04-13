@@ -52,11 +52,15 @@
     </style>
 </head>
 <body>
-
+    <a href='https://archernar.github.io/files/index.html'>home</a><br>
     <h1>Code</h1>
 
     <div class="code-container">
         <pre>
+function warn() {
+  date "+%Y-%m-%d %H:%M:%S"
+  echo "WARN: $msg" >&2
+}
 function warn() {
   date "+%Y-%m-%d %H:%M:%S"
   echo "WARN: $msg" >&2

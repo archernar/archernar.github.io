@@ -52,11 +52,16 @@
     </style>
 </head>
 <body>
-
+    <a href='https://archernar.github.io/files/index.html'>home</a><br>
     <h1>Code</h1>
 
     <div class="code-container">
         <pre>
+function core.print_debug() {
+	if [[ -v DEBUG ]]; then
+		printf "%s: %s\n" 'Debug' "$msg"
+	fi
+}
 function core.print_debug() {
 	if [[ -v DEBUG ]]; then
 		printf "%s: %s\n" 'Debug' "$msg"
