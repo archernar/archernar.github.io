@@ -22,7 +22,7 @@ function alpha_normal4() {
 cat "$filename" | sort | uniq > "$tmp1"
 N=`wc -l "$tmp1" | gawk '{print $1}'`
 M=$((N % 4));
-echo "The function list contains $N functions"
+core.print.info "The function list contains $N functions"
 if [ "$M" == "0" ]; then                                                                                               
     echo "Nothing to Add"
 fi
@@ -44,7 +44,7 @@ fi
 
 cat "$tmp1" | sort | uniq > "$tmp2"; cp "$tmp2" "$tmp1"
 N=`wc -l "$tmp1" | gawk '{print $1}'`
-echo "The function list contains $N functions"
+core.print.info "The function list contains $N functions"
 N=$((N / 4));
 rm -f sfa*  >/dev/null 2>&1
 sed -i 's/zzz.*$/\&nbsp;/g' "$tmp1"
