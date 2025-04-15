@@ -1,5 +1,4 @@
 function alpha_normal2() {
-  echo "$FUNCNAME : STR ******************************************************************************"
   local tmp1=$(mktemp)
   local tmp2=$(mktemp)
   rm -f "$tmp1" >/dev/null 2>&1
@@ -42,6 +41,5 @@ split -l $N "$tmp1" sf
 paste -d'\n' sfaa sfab > "$tmp1"
 
 cp "$tmp1" "$filename"
-echo "$FUNCNAME : END ******************************************************************************"
 
 }
