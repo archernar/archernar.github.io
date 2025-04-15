@@ -73,7 +73,7 @@ function create_markdown_table4() {
 
   rm -f "$tmp" >/dev/null 2>&1
   if [[ "$str" == "MAKELINKS" ]]; then
-      cat "$input_file" |gawk '{n=split($0,A,"/");print "[" A[n] "](" $0 ")";}' > $tmp
+      cat "$input_file" |gawk '{n=split($0,A,"/");sub(/[.]html$/, "", A[n]);print "[" A[n] "](" $0 ")";}' > $tmp
   else
       cat "$input_file"  > $tmp
   fi
