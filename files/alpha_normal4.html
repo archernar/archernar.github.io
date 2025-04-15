@@ -86,16 +86,16 @@ if [ "$M" == "0" ]; then
     echo "Nothing to Add"
 fi
 if [ "$M" == "3" ]; then                                                                                               
-    echo "Adding 1 functions"
+    core.print.info "Adding 1 functions"
     echo "zzzone()" >> "$tmp1"
 fi
 if [ "$M" == "2" ]; then                                                                                               
-    echo "Adding 2 functions"
+    core.print.info "Adding 2 functions"
     echo "zzzone()" >> "$tmp1"
     echo "zzztwo()" >> "$tmp1"
 fi
 if [ "$M" == "1" ]; then                                                                                               
-    echo "Adding 3 functions"
+    core.print.info "Adding 3 functions"
     echo "zzzone()" >> "$tmp1"
     echo "zzztwo()" >> "$tmp1"
     echo "zzzthree()" >> "$tmp1"
