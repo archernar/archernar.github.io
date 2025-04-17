@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code</title>
+    <style>
+        body {
+            background-color: #1e1e1e; /* Dark background for the page */
+            color: #d4d4d4; /* Light text color for the page */
+        }
+
+        .code-container {
+            background-color: #252526; /* Darker background for the code block */
+            border: 1px solid #333; /* Dark gray border */
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: monospace, sans-serif;
+            font-size: 18px;
+            line-height: 1.4;
+        }
+
+        .code-container pre {
+            margin: 0;
+        }
+
+        .comment {
+            color: #6a9955; /* Green for comments */
+        }
+
+        .keyword {
+            color: #569cd6; /* Light blue for keywords */
+            font-weight: bold;
+        }
+
+        .string {
+            color: #ce9178; /* Orange/brown for strings */
+        }
+
+        .number {
+            color: #b5cea8; /* Light green for numbers */
+        }
+
+        .class-name {
+            color: #4ec9b0; /* Cyan for class names */
+        }
+
+        .method-name {
+            color: #dcdcaa; /* Yellow for method names */
+        }
+    </style>
+</head>
+<body>
+    <a href='https://archernar.github.io/files/index.html'>home</a><br>
+    <h1>Code Library</h1>
+
+    <div class="code-container">
+        <pre>
+function core.check_for_duplicates() {
+  local -A lines  # Declare an associative array to store line counts.
+  local line
+  local duplicate_found=0
+
+  # Check if the file exists and is readable.
+  if [[ ! -r "$filename" ]]; then
+    printf "Error: File '%s' does not exist or is not readable.\n" "$filename" >&2
+    return 2
+  fi
+
+  # Read the file line by line.
+  while IFS= read -r line; do
+    # If the line exists as a key in the associative array, increment its count.
+    if [[ -v lines["$line"] ]]; then
+      ((lines["$line"]++))
+      # Check if this is the first time we've seen this duplicate.
+      if ((lines["$line"] == 2)); then
+        duplicate_found=1 # Set the flag when the first duplicate is found
+        printf "Duplicate line found:\n" >&2 # print this only once
+      fi
+    else
+      # Otherwise, add the line to the array with a count of 1.
+      lines["$line"]=1
+    fi
+  done < "$filename"
+
+  # Print the duplicate lines and their counts.
+  if ((duplicate_found)); then
+    for line in "${!lines[@]}"; do # loop through the keys of the array
+      if ((lines["$line"] > 1)); then
+        printf "  \"%s\": %d times\n" "$line" "${lines["$line"]}" >&2
+      fi
+    done
+    return 1 # Return 1 to indicate duplicates were found.
+  else
+    return 0 # Return 0 to indicate no duplicates were found.
+  fi
+}
+
+        </pre>
+    </div>
+</body>
+</html>
