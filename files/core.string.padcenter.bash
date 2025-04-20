@@ -1,5 +1,4 @@
 function core.string.padcenter() {
-  local width="$2"
   local pad_char="${3:- }" # Default padding character is space
   local current_length=$(string_length "$str")
 
