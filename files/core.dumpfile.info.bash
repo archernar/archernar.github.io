@@ -7,8 +7,10 @@ function core.dumpfile.info() {
     return 2
   fi
 
-  # Read the file line by line.
-  while IFS= read -r line; do
-      core.print.info "$line"
-  done < "$filename"
+  if [ "$DEBUGLEVEL" -ge 5 ]; then
+      # Read the file line by line.
+      while IFS= read -r line; do
+          core.print.info "$line"
+      done < "$filename"
+  fi
 }
