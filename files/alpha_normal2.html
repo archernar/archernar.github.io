@@ -78,7 +78,7 @@ N=`wc -l "$tmp1" | gawk '{print $1}'`
 M=$((N % 2));
 core.print.info "The function list contains $N functions"
 if [ "$M" == "0" ]; then                                                                                               
-    echo "Nothing to Add"
+    core.print.info "Nothing to Add"
 fi
 if [ "$M" == "2" ]; then                                                                                               
     core.print.info "Adding 1 function"
