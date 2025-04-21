@@ -1,5 +1,4 @@
 function core.string.indexof() {
-  local sub="$2"
   local index
 
   if [[ -z "$sub" ]]; then

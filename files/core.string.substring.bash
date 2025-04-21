@@ -1,6 +1,4 @@
 function core.string.substring() {
-  local start="$2"
-  local len="$3"
 
   # Adjust start index for bash's 0-based indexing
   local adjusted_start=$((start - 1))

@@ -1,6 +1,4 @@
 function core.string.replace.all() {
-  local old="$2"
-  local new="$3"
 
   if [[ -z "$old" ]]; then
     echo "$str"

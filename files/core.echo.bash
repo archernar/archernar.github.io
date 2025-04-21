@@ -1,3 +1,3 @@
 function core.echo() {
-         echo "$msg"
+     echo "$msg"
 }

@@ -1,3 +1,3 @@
 function core.print.echo() {
-         echo "$msg"
+     echo "$msg"
 }

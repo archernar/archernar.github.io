@@ -1,4 +1,5 @@
 function core.print.flag() {
+    local msg="************************"
     local f=${FUNCNAME[1]}
     if [ "$DEBUG" -gt 0 ]; then
         if core._should_print_color 1; then

@@ -57,21 +57,16 @@
 
     <div class="code-container">
         <pre>
-function core.string.indexof() {
-  local index
+function right_pad_limited() {
+  local max_length=$((width - 1))
+  local truncated_string="${string:0:$max_length}" # Truncate if longer than max_length
+  local current_length="${#truncated_string}"
+  local padding_length=$((width - current_length))
 
-  if [[ -z "$sub" ]]; then
-    echo 0 # Empty substring found at the beginning
-    return 0
-  fi
-
-  index=$(expr index "$str" "$sub")
-  if [[ "$index" -gt 0 ]]; then
-    echo $((index - 1)) # Adjust to 0-based indexing
-    return 0
+  if (( padding_length > 0 )); then
+    printf "%-${width}s" "$truncated_string"
   else
-    echo -1 # Substring not found
-    return 1
+    printf "%s" "$truncated_string" # String is already at or wider than the width
   fi
 }
 
