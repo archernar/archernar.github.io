@@ -3,9 +3,9 @@ function core.print.info() {
     local ff=$(printf "%-32s\n" "$f")
     if [ "$DEBUG" -gt 0 ]; then
         if core._should_print_color 1; then
-            printf "\033[1;32m%s: %s:\033[0m %s\n" 'Info' "$ff" "$msg"
+            printf "\033[1;32m%s: %s:\033[0m %s\n" 'Inf' "$ff" "$msg"
         else
-            printf "%s: %s: %s\n" 'Info' "$ff" "$msg"
+            printf "%s: %s: %s\n" 'Inf' "$ff" "$msg"
         fi
     fi
 }
