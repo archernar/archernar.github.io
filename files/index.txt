@@ -132,37 +132,37 @@
 <td><a href="https://archernar.github.io/files/core.print.error.html">core.print.error</a></td>
 <td><a href="https://archernar.github.io/files/create_markdown_table4.html">create_markdown_table4</a></td>
 <td><a href="https://archernar.github.io/files/mv_f.html">mv_f</a></td>
-<td><a href="https://archernar.github.io/files/util.println.magenta.html">util.println.magenta</a></td>
+<td><a href="https://archernar.github.io/files/util.println.blue.html">util.println.blue</a></td>
 </tr>
 <tr class="odd">
 <td><a href="https://archernar.github.io/files/core.print.error_fn.html">core.print.error_fn</a></td>
 <td><a href="https://archernar.github.io/files/current_timestamp.html">current_timestamp</a></td>
 <td><a href="https://archernar.github.io/files/necho.html">necho</a></td>
-<td><a href="https://archernar.github.io/files/util.println.red.html">util.println.red</a></td>
+<td><a href="https://archernar.github.io/files/util.println.green.html">util.println.green</a></td>
 </tr>
 <tr class="even">
 <td><a href="https://archernar.github.io/files/core.print.fatal.html">core.print.fatal</a></td>
 <td><a href="https://archernar.github.io/files/dirname.html">dirname</a></td>
 <td><a href="https://archernar.github.io/files/padout_file_lines.html">padout_file_lines</a></td>
-<td><a href="https://archernar.github.io/files/util.println.white.html">util.println.white</a></td>
+<td><a href="https://archernar.github.io/files/util.println.magenta.html">util.println.magenta</a></td>
 </tr>
 <tr class="odd">
 <td><a href="https://archernar.github.io/files/core.print.fatal_fn.html">core.print.fatal_fn</a></td>
 <td><a href="https://archernar.github.io/files/eecho.html">eecho</a></td>
 <td><a href="https://archernar.github.io/files/pidof_name.html">pidof_name</a></td>
-<td><a href="https://archernar.github.io/files/warn.html">warn</a></td>
+<td><a href="https://archernar.github.io/files/util.println.red.html">util.println.red</a></td>
 </tr>
 <tr class="even">
 <td><a href="https://archernar.github.io/files/core.print.flag.html">core.print.flag</a></td>
 <td><a href="https://archernar.github.io/files/ends_with.html">ends_with</a></td>
 <td><a href="https://archernar.github.io/files/prompter.html">prompter</a></td>
-<td><a href=""> </a></td>
+<td><a href="https://archernar.github.io/files/util.println.white.html">util.println.white</a></td>
 </tr>
 <tr class="odd">
 <td><a href="https://archernar.github.io/files/core.print.info.html">core.print.info</a></td>
 <td><a href="https://archernar.github.io/files/error.html">error</a></td>
 <td><a href="https://archernar.github.io/files/remove_leading_whitespace.html">remove_leading_whitespace</a></td>
-<td><a href=""> </a></td>
+<td><a href="https://archernar.github.io/files/warn.html">warn</a></td>
 </tr>
 </tbody>
 </table>
