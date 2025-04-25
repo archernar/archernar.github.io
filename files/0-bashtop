@@ -1,0 +1,59 @@
+#!/usr/bin/bash
+# *********************************************************DATEOMATIC: Wed Feb 26 00:01:17 EST 2025
+# *********************************************************HASHOMATIC: 77817de3816b3a115eaec6bb1cc34eea
+Tmp=/tmp/$$
+Tmp0=/tmp/$$_$$
+Tmp1=/tmp/$$_$$_$$
+Tmp2=/tmp/$$_$$_$$_$$
+Tmp3=/tmp/$$_$$_$$_$$_$$
+trap 'exit 0' INT HUP QUIT TERM ALRM USR1
+trap 'rm -f "$Tmp" "$Tmp0" "$Tmp1" "$Tmp2" "$Tmp3"' EXIT
+rm -f "$Tmp $Tmp0 $Tmp1 $Tmp2 $Tmp3"  >/dev/null 2>&1;
+#   >/dev/null 2>&1;
+
+UPDATE="NO"
+while getopts "cur:" arg
+do
+    case $arg in
+        c) clear
+           ;;
+        u) UPDATE="YES"
+           exit 0
+           ;;
+        r) OA="$OPTARG"
+           exit 0
+           ;;
+    esac
+done
+shift $(($OPTIND - 1))
+
+# Check if the number of arguments is correct
+if [ $# -ne 2 ]; theni
+  echo "Usage: $0 <arg1> <arg2>"
+  echo "Error: Incorrect number of arguments."
+  exit 1  # Exit with an error code
+fi
+arg1="$1"
+arg2="$2"
+
+if [ "$UPDATE" == "YES" ]; then                                                                                               
+    RETVAL="YES"                                                                                                             
+else                                                                                                                         
+    RETVAL="NO"                                                                                                              
+fi                                                                                                                           
+
+full_filename="$1"
+filename=$(basename "$full_filename")
+directory=$(dirname "$full_filename")
+extension="${filename##*.}" # Remove everything up to the last dot
+if [ "$extension" == "$filename" ]; then # No extension found
+  extension=""
+fi
+filename_no_ext="${filename%.*}" # Remove everything after the last dot
+file_size=$(stat -c %s "$full_filename")
+file_permissions=$(stat -c %a "$full_filename")
+file_owner=$(stat -c %U "$full_filename")
+last_modified=$(stat -c %y "$full_filename")
+last_access=$(stat -c %x "$full_filename")
+file_type=$(file -b --mime-type "$full_filename")
+
