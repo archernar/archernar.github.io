@@ -1,0 +1,4 @@
+git add "$1"
+git commit -m "Update"
+git push origin master
+git status
