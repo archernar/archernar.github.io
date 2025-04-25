@@ -180,7 +180,7 @@
 <td><a href="https://archernar.github.io/files/core.clear.EOL.html">core.clear.EOL</a></td>
 <td><a href="https://archernar.github.io/files/core.string.toupper.html">core.string.toupper</a></td>
 <td><a href="https://archernar.github.io/files/necho.html">necho</a></td>
-<td><a href=""> </a></td>
+<td><a href="https://archernar.github.io/split_file_n(input_file,num_files)">split_file_n(input_file,num_files)</a></td>
 </tr>
 <tr class="odd">
 <td><a href="https://archernar.github.io/files/core.dumpfile.info.html">core.dumpfile.info</a></td>
