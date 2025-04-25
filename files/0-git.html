@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code</title>
+    <style>
+        body {
+            background-color: #1e1e1e; /* Dark background for the page */
+            color: #d4d4d4; /* Light text color for the page */
+        }
+
+        .code-container {
+            background-color: #252526; /* Darker background for the code block */
+            border: 1px solid #333; /* Dark gray border */
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: monospace, sans-serif;
+            font-size: 18px;
+            line-height: 1.4;
+        }
+
+        .code-container pre {
+            margin: 0;
+        }
+
+        .comment {
+            color: #6a9955; /* Green for comments */
+        }
+
+        .keyword {
+            color: #569cd6; /* Light blue for keywords */
+            font-weight: bold;
+        }
+
+        .string {
+            color: #ce9178; /* Orange/brown for strings */
+        }
+
+        .number {
+            color: #b5cea8; /* Light green for numbers */
+        }
+
+        .class-name {
+            color: #4ec9b0; /* Cyan for class names */
+        }
+
+        .method-name {
+            color: #dcdcaa; /* Yellow for method names */
+        }
+    </style>
+</head>
+<body>
+    <a href='https://archernar.github.io/files/index.html'>home</a><br>
+    <h1>Code Library</h1>
+
+    <div class="code-container">
+        <pre>
+Git Cheat Sheet
+
+Basic Commands:
+
+git init              Initialize a new Git repository
+git clone <url>       Clone a repository from a URL
+git add <file>        Add a file to the staging area
+git add .             Add all changed files to the staging area
+git commit -m "message" Commit changes with a message
+git status            Show the status of the working directory and staging area
+git log               Show commit history
+git diff              Show changes between commits, the working tree, and the 
+staging area
+
+
+Branching & Merging:
+
+git branch            List all branches
+git branch <branch>   Create a new branch
+git checkout <branch> Switch to a different branch
+git checkout -b <branch> Create and switch to a new branch
+git merge <branch>    Merge a branch into the current branch
+git branch -d <branch> Delete a branch
+
+
+Remote Repositories:
+
+git remote -v         List remote repositories
+git remote add origin <url> Add a remote repository
+git push origin <branch> Push a branch to a remote repository
+git pull origin <branch> Pull changes from a remote repository
+git fetch origin       Fetch changes from a remote repository without merging
+
+
+Stashing:
+
+git stash             Stash changes
+git stash pop          Restore stashed changes
+git stash list        List stashed changes
+git stash drop        Delete a stashed change
+
+
+Other Useful Commands:
+
+git revert <commit>   Revert a commit
+git reset --hard HEAD Reset the working directory to the last commit (use with 
+caution!)
+git rm <file>         Remove a file from the repository
+git help <command>    Get help for a specific command
+
+
+Ignoring Files:
+
+Create a .gitignore file in the root of your repository to specify files and 
+directories to ignore.  For example:
+
+*.log
+temp/*
+
+
+Common .gitignore entries:
+
+/target/
+/build/
+*.class
+*.pyc
+
+
+Note:  Replace <file>, <branch>, and <url> with actual file names, branch 
+names, and URLs.  Always commit your changes before switching branches.
+
+
+        </pre>
+    </div>
+</body>
+</html>
