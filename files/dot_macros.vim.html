@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code</title>
+    <style>
+        body {
+            background-color: #1e1e1e; /* Dark background for the page */
+            color: #d4d4d4; /* Light text color for the page */
+        }
+
+        .code-container {
+            background-color: #252526; /* Darker background for the code block */
+            border: 1px solid #333; /* Dark gray border */
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: monospace, sans-serif;
+            font-size: 18px;
+            line-height: 1.4;
+        }
+
+        .code-container pre {
+            margin: 0;
+        }
+
+        .comment {
+            color: #6a9955; /* Green for comments */
+        }
+
+        .keyword {
+            color: #569cd6; /* Light blue for keywords */
+            font-weight: bold;
+        }
+
+        .string {
+            color: #ce9178; /* Orange/brown for strings */
+        }
+
+        .number {
+            color: #b5cea8; /* Light green for numbers */
+        }
+
+        .class-name {
+            color: #4ec9b0; /* Cyan for class names */
+        }
+
+        .method-name {
+            color: #dcdcaa; /* Yellow for method names */
+        }
+    </style>
+</head>
+<body>
+    <a href='https://archernar.github.io/files/index.html'>home</a><br>
+    <h1>Code Library</h1>
+
+    <div class="code-container">
+        <pre>
+function! SaveMacroA(filename)
+  let macro_content = getreg('a')
+  call writefile([macro_content], a:filename)
+endfunction
+function! SaveMacroB(filename)
+  let macro_content = getreg('b')
+  call writefile([macro_content], a:filename)
+endfunction
+function! SaveMacroC(filename)
+  let macro_content = getreg('c')
+  call writefile([macro_content], a:filename)
+endfunction
+function! LoadMacroA(filename)
+  if filereadable(a:filename)
+      let macro_content = readfile(a:filename)
+      if !empty(macro_content)
+        call setreg('a', macro_content[0])
+      endif
+  endif
+endfunction
+function! LoadMacroB(filename)
+  if filereadable(a:filename)
+      let macro_content = readfile(a:filename)
+      if !empty(macro_content)
+        call setreg('b', macro_content[0])
+      endif
+  endif
+endfunction
+function! LoadMacroC(filename)
+  if filereadable(a:filename)
+      let macro_content = readfile(a:filename)
+      if !empty(macro_content)
+        call setreg('c', macro_content[0])
+      endif
+  endif
+endfunction
+
+function! DefineMacroAPrompt()
+  let l:sz = input("macro 'a' text ")
+  call setreg('a', l:sz)
+  call SaveMacroA("/home/mestes/.vim/macros/macro_a.vim")
+  nnoremap <Leader>a         :normal! @a<cr>b
+endfunction
+function! DefineMacroBPrompt()
+  let l:sz = input("macro 'b' text ")
+  call setreg('b', l:sz)
+  call SaveMacroB("/home/mestes/.vim/macros/macro_b.vim")
+  nnoremap <Leader>b         :normal! @b<cr>b
+endfunction
+function! DefineMacroCPrompt()
+  let l:sz = input("macro 'c' text ")
+  call setreg('c', l:sz)
+  call SaveMacroC("/home/mestes/.vim/macros/macro_c.vim")
+  nnoremap <Leader>c         :normal! @c<cr>b
+endfunction
+
+call LoadMacroA("/home/mestes/.vim/macros/macro_a.vim")
+call LoadMacroB("/home/mestes/.vim/macros/macro_b.vim")
+call LoadMacroC("/home/mestes/.vim/macros/macro_c.vim")
+nnoremap <Leader>A         :call DefineMacroAPrompt()<cr>
+nnoremap <Leader>B         :call DefineMacroBPrompt()<cr>
+nnoremap <Leader>C         :call DefineMacroCPrompt()<cr>
+
+
+        </pre>
+    </div>
+</body>
+</html>
