@@ -1,9 +1,11 @@
 function core.print.critical() {
-    local f=${FUNCNAME[1]}
-    local ff=$(printf "%-32s\n" "$f")
-	if core._should_print_color 2; then
-        util.println.red "$(printf "%s: %s: %s" "Crit" "$ff" "$msg")" >&2
-	else
-        util.println.white "$(printf "%s: %s: %s" "Crit" "$ff" "$msg")" >&2
-	fi
+    local ff=$(printf "%-32s\n" "${FUNCNAME[1]}")
+    local sz="$(printf "%s %s: %s %s" "Crit" "$SILENT" "$ff" "$msg")"
+    if [ "$DEBUG" -gt 0 ]; then
+        if core._should_print_color 1; then
+            util.println.red "$sz"
+        else
+            util.println.white "$sz"
+        fi
+    fi
 }
