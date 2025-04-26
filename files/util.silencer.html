@@ -57,8 +57,13 @@
 
     <div class="code-container">
         <pre>
-function util.println.green() {
-        printf "\033[1;32m%s\033[0m\n" "$msg" | util.silencer
+function util.silencer() {
+        if [[ "$SILENT" -gt 0 ]]; then
+            cat /dev/stdin >/dev/null 2>&1;
+        else
+            cat /dev/stdin
+        fi
+    fi
 }
 
         </pre>
