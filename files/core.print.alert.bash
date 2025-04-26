@@ -1,8 +1,9 @@
 function core.print.alert() {
-    local sz="$(printf '%s: %s %s: %s' 'Alrt' '$SILENT' $(printf '%-32s\n' '${FUNCNAME[1]}' '$msg')"
+    local f=${FUNCNAME[1]}
+    local ff=$(printf "%-32s\n" "$f")
 	if core._should_print_color 2; then
-        util.println.magenta "$sz"
+        util.println.magent "$(printf "%s: %s: %s" "Alrt" "$ff" "$msg")" >&2
 	else
-        util.println.white "$sz"
+        util.println.white "$(printf "%s: %s: %s" "Alrt" "$ff" "$msg")" >&2
 	fi
 }
