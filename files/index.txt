@@ -171,7 +171,7 @@
 <td><a href="https://archernar.github.io/files/timestamp_ms.html">timestamp_ms</a></td>
 </tr>
 <tr class="odd">
-<td><a href="https://archernar.github.io/files/bash.secretscanner.html">bash.secretscanner</a></td>
+<td><a href="https://archernar.github.io/files/bash.scanner.html">bash.scanner</a></td>
 <td><a href="https://archernar.github.io/files/core.string.split.html">core.string.split</a></td>
 <td><a href="https://archernar.github.io/files/is_file.html">is_file</a></td>
 <td><a href="https://archernar.github.io/files/trim.html">trim</a></td>

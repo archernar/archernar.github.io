@@ -1,3 +1,24 @@
+function scan_for_randomness() {
+         local file="$1"               # Bash-Function-Args
+         echo "OK"
+         echo "$file"
+         echo "=========="
+    if [[ -z "$file" ]]; then
+      echo "Usage: scan_for_secrets <file>"
+      return 1
+    fi
+
+    if [[ ! -f "$file" ]]; then
+      echo "Error: File '$file' not found."
+      return 1
+    fi
+
+    while IFS= read -r line; do
+         measure_randomness "$line"
+    done < "$file"
+}
+
+
 function scan_for_secrets() {
          local file="$1"               # Bash-Function-Args
 
@@ -83,3 +104,115 @@ function scan_for_secrets() {
   return 0
 }
 
+function measure_randomness_uniqueness {
+  local str="$1"
+  local length="${#str}"
+
+  if [[ -z "$str" ]]; then
+    echo 1 # Empty string has least randomness
+    return
+  fi
+
+  local -A char_counts
+  local char
+  for ((i=0; i<length; i++)); do
+    char="${str:i:1}"
+    ((char_counts["$char"]++))
+  done
+
+  local max_count=0
+  for count in "${char_counts[@]}"; do
+    if [[ "$count" -gt "$max_count" ]]; then
+      max_count="$count"
+    fi
+  done
+
+  # Calculate a simple randomness score.
+  # A higher max_count (more frequent character) means less randomness.
+  # We normalize it to the length of the string.
+  local homogeneity_percentage=$(( (max_count * 100) / length ))
+
+  # Invert the homogeneity to get a randomness score.
+  # Scale it to be between 1 and 100.
+  local randomness_score=$(( 100 - homogeneity_percentage + 1 ))
+
+  echo "$randomness_score"
+}
+
+function measure_randomness {
+  local str="$1"
+  str=$(echo "$str" | sed 's/[^[:alnum:]]//g')
+  local length="${#str}"
+
+  local R=$(calculate_case_ratio "$str")
+
+  if [[ -z "$str" ]]; then
+    echo 1 # Empty string has least randomness
+    return
+  fi
+
+  local -A char_counts
+  local char
+  for ((i=0; i<length; i++)); do
+    char="${str:i:1}"
+    ((char_counts["$char"]++))
+  done
+
+  local entropy=0.0
+  local probability
+  for count in "${char_counts[@]}"; do
+    probability=$(echo "scale=6; $count / $length" | bc) # Calculate probability
+    entropy=$(echo "scale=6; $entropy - ($probability * l($probability) / l(2))" | bc -l) # Calculate entropy
+  done
+
+  # Scale entropy to a 1-100 range.  Maximum entropy for a given length
+  # occurs when all characters are unique and evenly distributed.
+  # We'll approximate the maximum entropy and scale relative to that.
+  # A more accurate approach would involve calculating the theoretical maximum
+  # entropy for the given string length and character set, but this approximation
+  # is sufficient for demonstration.
+  local max_entropy=$(echo "scale=6; l($length) / l(2)" | bc -l) # Approximation.
+  if (( $(echo "$max_entropy == 0" | bc -l) )); then
+      echo 1
+      return
+  fi
+  local randomness_score=$(echo "scale=0; 1 + (99 * $entropy / $max_entropy)" | bc)
+
+  # Ensure the score is within the desired range
+  if (( $(echo "$randomness_score < 1" | bc -l) )); then
+    randomness_score=1
+  elif (( $(echo "$randomness_score > 100" | bc -l) )); then
+    randomness_score=100
+  fi
+
+  echo "$randomness_score: $R: $1"
+}
+
+calculate_case_ratio() {
+  local input_string="$1"
+  local upper_count=0
+  local lower_count=0
+
+  # Remove all non-alphanumeric characters
+  local alphanumeric_string=$(echo "$input_string" | sed 's/[^[:alnum:]]//g')
+
+  # Iterate through the alphanumeric string
+  for ((i=0; i<${#alphanumeric_string}; i++)); do
+    local char="${alphanumeric_string:i:1}"
+    if [[ "$char" =~ [[:upper:]] ]]; then
+      ((upper_count++))
+    elif [[ "$char" =~ [[:lower:]] ]]; then
+      ((lower_count++))
+    fi
+  done
+
+  # Calculate the ratio, avoiding division by zero
+  if [[ "$lower_count" -gt 0 ]]; then
+    local ratio=$(echo "scale=2; $upper_count / $lower_count" | bc)
+    echo "$ratio"
+  else
+    # If no lowercase characters, return a special value (e.g., -1 or "infinity")
+    # Here, we'll return -1 to indicate no lowercase characters
+    echo "-1"
+  fi
+}
