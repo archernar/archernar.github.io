@@ -1,0 +1,31 @@
+#!/usr/bin/bash
+Tmp=/tmp/$$
+Tmp1=/tmp/$$_$$
+Tmp2=/tmp/$$_$$_$$
+Tmp3=/tmp/$$_$$_$$_$$
+trap 'exit 0' INT HUP QUIT TERM ALRM USR1
+trap 'rm -f "$Tmp" "$Tmp1" "$Tmp2" "$Tmp3"' EXIT
+rm -f "$Tmp"  >/dev/null 2>&1
+rm -f "$Tmp1"  >/dev/null 2>&1
+rm -f "$Tmp2"  >/dev/null 2>&1
+rm -f "$Tmp3"  >/dev/null 2>&1
+#================================================================
+
+source ~/bash.library
+
+filename="$1"
+
+# Check if a filename is are provided
+if [ -z "$filename" ]; then
+  fecho "Usage: <filename> <filename>"
+  exit 1
+fi
+
+# Check if the files exist
+if [ ! -f "$filename" ]; then
+  fecho "Error: File '$filename' not found."
+  exit 1
+fi
+
+indent_file "$filename" 
+

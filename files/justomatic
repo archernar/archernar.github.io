@@ -1,0 +1,47 @@
+#!/usr/bin/bash
+Tmp=/tmp/$$
+Tmp1=/tmp/$$_$$
+Tmp2=/tmp/$$_$$_$$
+Tmp3=/tmp/$$_$$_$$_$$
+trap 'exit 0' INT HUP QUIT TERM ALRM USR1
+trap 'rm -f "$Tmp" "$Tmp1" "$Tmp2" "$Tmp3"' EXIT
+rm -f "$Tmp"  >/dev/null 2>&1
+rm -f "$Tmp1"  >/dev/null 2>&1
+rm -f "$Tmp2"  >/dev/null 2>&1
+rm -f "$Tmp3"  >/dev/null 2>&1
+#================================================================
+
+source ~/bash.library
+
+INDENT=""
+DELIM=" "
+BAR=""
+SPACE=""
+W=32
+
+while getopts "isn:f:c" arg
+do
+    case $arg in
+        i) INDENT="YES"
+           echo "$INDENT"
+           ;;
+        s) SPACE="    "
+           ;;
+        n) W=$OPTARG
+           ;;
+        f) DELIM=""
+           justify_file "$OPTARG" "$W"
+           exit 0
+           ;;
+        c) DELIM=","
+           ;;
+    esac
+done
+shift $(($OPTIND - 1))
+echo "$INDENT"
+
+if [ "$INDENT" == "YES" ]; then    
+    indent_file "$OPTARG"
+fi
+
+

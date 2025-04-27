@@ -1,0 +1,183 @@
+#!/usr/bin/bash
+Tmp=/tmp/$$
+Tmp1=/tmp/$$_$$
+Tmp2=/tmp/$$_$$_$$
+Tmp3=/tmp/$$_$$_$$_$$
+trap 'exit 0' INT HUP QUIT TERM ALRM USR1
+trap 'rm -f "$Tmp" "$Tmp1" "$Tmp2" "$Tmp3"' EXIT
+rm -f "$Tmp"  >/dev/null 2>&1
+rm -f "$Tmp1"  >/dev/null 2>&1
+rm -f "$Tmp2"  >/dev/null 2>&1
+rm -f "$Tmp3"  >/dev/null 2>&1
+#================================================================
+# paste -d' ' file1 file2 > output_file
+
+source ~/bash.library
+
+function implColomatic() {
+    local tmp1="/tmp/temp_$$"
+    local tmp2="/tmp/temp_$$_$$"
+    local tmp3="/tmp/temp_$$_$$_$$"
+
+    # Get the filename from the command-line argument
+    local filename1="$1"
+    local filename2="$2"
+
+    # Check if a filename is are provided
+    if [ -z "$filename1" ]; then
+      echo "Usage: <filename> <filename>"
+      exit 1
+    fi
+    if [ -z "$filename2" ]; then
+      echo "Usage: <filename> <filename>"
+      exit 1
+    fi
+
+    # Check if the files exist
+    if [ ! -f "$filename1" ]; then
+      echo "Error: File '$filename' not found."
+      exit 1
+    fi
+    if [ ! -f "$filename2" ]; then
+      echo "Error: File '$filename' not found."
+      exit 1
+    fi
+    cat "$filename1" > $tmp1
+    cat "$filename2" > $tmp2
+
+    if [ "$DELIM" == "," ]; then                                                                                               
+        paste "$tmp1" "$tmp2" | sed 's/\t/,/g'
+    else
+        if [ "$BAR" == "|" ]; then                                                                                               
+            paste "$tmp1" "$tmp2" | sed 's/\t//g'
+        else
+            paste "$tmp1" "$tmp2" | sed 's/\t/ /g'
+        fi
+    fi
+    rm -f "$tmp1" >/dev/null 2>&1
+    rm -f "$tmp2" >/dev/null 2>&1
+    rm -f "$tmp3" >/dev/null 2>&1
+}
+
+DELIM=" "
+BAR=" "
+SORT=""
+W=0
+while getopts "sbn:2:3:4:5:c" arg
+do
+    case $arg in
+        s) SORT="YES"
+           ;;
+        b) BAR="|"
+           ;;
+        n) W=$OPTARG
+           ;;
+        2) DELIM=""
+           rm -f "split_0" "split_1" "split_2" "split_3" "split_4" "split_5" >/dev/null 2>&1
+           cp "$OPTARG" "split_0"
+           trim_leading_whitespace_file "split_0"
+           justify_file "split_0" "44"
+           sort_file "split_0" "$SORT"
+#           indentomatic -f split_0 
+           split_file_n "split_0" "2" "split_"
+           truncate_file_lines "split_1" $W 
+               padout_file_lines "split_1"
+               string_before_file_lines "split_1" "$BAR"
+           truncate_file_lines "split_2" $W 
+               padout_file_lines "split_2"
+               string_before_file_lines "split_2" "$BAR"
+               string_after_file_lines  "split_2" "$BAR"
+
+           implColomatic "split_1"    "split_2"    "$DELIM"
+           rm -f "split_0" "split_1" "split_2" "split_3" "split_4" "split_5" >/dev/null 2>&1
+           exit 0
+           ;;
+        3) DELIM=" "
+           rm -f "split_0" "split_1" "split_2" "split_3" "split_4" "split_5" >/dev/null 2>&1
+           cp "$OPTARG" "split_0"
+           sort_file "split_0" "$SORT"
+           split_file_n "split_0" "3" "split_"
+           truncate_file_lines "split_1" $W 
+               padout_file_lines "split_1"
+                   string_before_file_lines "split_1" "$BAR"
+           truncate_file_lines "split_2" $W 
+               padout_file_lines "split_2"
+                   string_before_file_lines "split_2" "$BAR"
+           truncate_file_lines "split_3" $W 
+               padout_file_lines "split_3"
+                   string_before_file_lines "split_3" "$BAR"
+                   string_after_file_lines  "split_3" "$BAR"
+
+           implColomatic "split_1"    "split_2"    "$DELIM"    > "$Tmp1"
+           implColomatic "$Tmp1"      "split_3"    "$DELIM"
+           rm -f "split_0" "split_1" "split_2" "split_3" "split_4" "split_5" >/dev/null 2>&1
+           exit 0
+           ;;
+        4) DELIM=" "
+           rm -f "split_0" "split_1" "split_2" "split_3" "split_4" "split_5" >/dev/null 2>&1
+           cp "$OPTARG" "split_0"
+           sort_file "split_0" "$SORT"
+           split_file_n "split_0" "4" "split_"
+           truncate_file_lines "split_1" $W 
+               padout_file_lines "split_1"
+                   string_before_file_lines "split_1" "$BAR"
+           truncate_file_lines "split_2" $W 
+               padout_file_lines "split_2"
+                   string_before_file_lines "split_2" "$BAR"
+           truncate_file_lines "split_3" $W 
+               padout_file_lines "split_3"
+                   string_before_file_lines "split_3" "$BAR"
+           truncate_file_lines "split_4" $W 
+               padout_file_lines "split_4"
+                   string_before_file_lines "split_4" "$BAR"
+                   string_after_file_lines  "split_4" "$BAR"
+           implColomatic "split_1"    "split_2"    "$DELIM"    > "$Tmp1"
+           implColomatic "$Tmp1"      "split_3"    "$DELIM"    > "$Tmp2"
+           implColomatic "$Tmp2"      "split_4"    "$DELIM"
+           rm -f "split_0" "split_1" "split_2" "split_3" "split_4" "split_5" >/dev/null 2>&1
+           exit 0
+           ;;
+        5) DELIM=" "
+           rm -f "split_0" "split_1" "split_2" "split_3" "split_4" "split_5" >/dev/null 2>&1
+           cp "$OPTARG" "split_0"
+           sort_file "split_0" "$SORT"
+           split_file_n "split_0" "5" "split_"
+           truncate_file_lines "split_1" $W 
+               padout_file_lines "split_1"
+                   string_before_file_lines "split_1" "$BAR"
+           truncate_file_lines "split_2" $W 
+               padout_file_lines "split_2"
+                   string_before_file_lines "split_2" "$BAR"
+           truncate_file_lines "split_3" $W 
+               padout_file_lines "split_3"
+                   string_before_file_lines "split_3" "$BAR"
+           truncate_file_lines "split_4" $W 
+               padout_file_lines "split_4"
+                   string_before_file_lines "split_4" "$BAR"
+           truncate_file_lines "split_5" $W 
+               padout_file_lines "split_5"
+                   string_before_file_lines "split_5" "$BAR"
+                   string_after_file_lines  "split_5" "$BAR"
+           implColomatic "split_1"    "split_2"    "$DELIM"    > "$Tmp1"
+           implColomatic "$Tmp1"      "split_3"    "$DELIM"    > "$Tmp2"
+           implColomatic "$Tmp2"      "split_4"    "$DELIM"    > "$Tmp3"
+           implColomatic "$Tmp3"      "split_5"    "$DELIM"
+           rm -f "split_0" "split_1" "split_2" "split_3" "split_4" "split_5" >/dev/null 2>&1
+           exit 0
+           ;;
+        c) DELIM=","
+           ;;
+    esac
+done
+shift $(($OPTIND - 1))
+
+if [ $# -gt 1 ]; then
+    implColomatic "$1" "$2" "$DELIM" > "$Tmp2"
+    shift
+    shift
+    for item in "$@"; do
+        implColomatic "$Tmp2" "$item" "$DELIM" > "$Tmp1"
+        cp "$Tmp1" "$Tmp2"
+    done
+    cat "$Tmp2"
+fi
