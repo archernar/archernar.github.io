@@ -1,11 +1,11 @@
 function core.print.error() {
-    local f=${FUNCNAME[1]}
-    local ff=$(printf "%-32s\n" "$f")
-	if core._should_print_color 2; then
-        printf "\033[1;31m%s: %s:\033[0m %s\n" 'Err' "$ff" "$msg" >&2
-		#printf "\033[1;31m%s:\033[0m %s\n" 'Err' "$msg" >&2
-	else
-        printf "%s: %s: %s\n" 'Err' "$ff" "$msg" >&2
-		#printf "%s: %s\n" 'Err' "$msg" >&2
-	fi
+    local ff=$(printf "%-32s\n" "${FUNCNAME[1]}")
+    local sz="$(printf "%s %s: %s %s" "Errr" "$SILENT" "$ff" "$msg")"
+    if [ "$LOGLEVEL" -ge $LL1A ]; then
+        if core._should_print_color 1; then
+            util.println.red "$sz"
+        else
+            util.println.white "$sz"
+        fi
+    fi
 }

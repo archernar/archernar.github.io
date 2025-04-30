@@ -58,9 +58,11 @@
     <div class="code-container">
         <pre>
 function core.print.debug() {
-	if [[ -v DEBUG ]]; then
-		printf "%s: %s\n" 'Debug' "$msg"
-	fi
+    local ff=$(printf "%-32s\n" "${FUNCNAME[1]}")
+    local sz="$(printf "%s %s: %s %s" "Info" "$SILENT" "$ff" "$msg")"
+    if [ "$LOGLEVEL" -ge $LL5A ]; then
+        util.println.white "$sz"
+    fi
 }
 
         </pre>
