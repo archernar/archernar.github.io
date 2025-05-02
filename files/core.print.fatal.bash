@@ -5,19 +5,9 @@ function core.print.fatal() {
     else
         dex=ctrl
     fi
-    local sz="<<"
-    local delim=""
-	#for ((i=0; i<${#FUNCNAME[@]}-1; ++i)); do
-	for ((i=${#FUNCNAME[@]}; i>=0; i--)); do
-		sz="$delim$sz,${FUNCNAME[$i]}"
-        delim=", "
-    done
-	sz=${#FUNCNAME[@]}-1
-    local length=${#FUNCNAME[@]}
-    last_index=$((length - 1))
-    local ff="$sz"
 
-    #local ff=$(printf "%-32s\n" "${FUNCNAME[dex]}")
+
+    local ff=$(printf "%-32s\n" "${FUNCNAME[dex]}")
     local sz="$(printf "%s %s: %s %s" "Fatl" "$SILENT" "$ff" "$msg")"
     if [ "$LOGLEVEL" -ge $LL0A ]; then
         if core._should_print_color 1; then
@@ -25,5 +15,14 @@ function core.print.fatal() {
         else
             util.println.white "$sz"
         fi
+
+        local sz=""
+        local delim=""
+        local length=${#FUNCNAME[@]}
+        length=$((length - 1))
+        for ((i=$length; i>0; i--)); do
+            core.print.stackline "----  ${FUNCNAME[$i]}"
+            delim=", "
+        done
     fi
 }
