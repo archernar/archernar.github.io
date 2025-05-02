@@ -5,10 +5,16 @@ function core.print.fatal() {
     else
         dex=ctrl
     fi
-    local sz=""
-	for ((i=0; i<${#FUNCNAME[@]}-1; ++i)); do
-		sz="$sz,${FUNCNAME[$i]}"
+    local sz="<<"
+    local delim=""
+	#for ((i=0; i<${#FUNCNAME[@]}-1; ++i)); do
+	for ((i=${#FUNCNAME[@]}; i>=0; i--)); do
+		sz="$delim$sz,${FUNCNAME[$i]}"
+        delim=", "
     done
+	sz=${#FUNCNAME[@]}-1
+    local length=${#FUNCNAME[@]}
+    last_index=$((length - 1))
     local ff="$sz"
 
     #local ff=$(printf "%-32s\n" "${FUNCNAME[dex]}")
