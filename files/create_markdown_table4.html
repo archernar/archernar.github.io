@@ -72,10 +72,13 @@ function create_markdown_table4() {
   STRING=`repeat_char "-" "24"`
 
   rm -f "$tmp" >/dev/null 2>&1
+  rm -f "frost" >/dev/null 2>&1
   if [[ "$str" == "MAKELINKS" ]]; then
       cat "$input_file" |gawk '{n=split($0,A,"/");sub(/[.]html$/, "", A[n]);print "[" A[n] "](" $0 ")";}' > $tmp
+      cat "$input_file" |gawk '{n=split($0,A,"/");sub(/[.]html$/, "", A[n]);print A[n];}' >> frost
   else
       cat "$input_file"  > $tmp
+      cat "$input_file"  > frost
   fi
 
   # Read lines from the file and create table rows

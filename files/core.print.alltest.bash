@@ -6,6 +6,6 @@ function core.print.alltest() {
       core.print.alert     "alert"
       core.print.error     "error"
       core.print.critical  "critical"
-      core.print.always    "always"
+      corePrintAlways    "always"
       core.print.fatal     "fatal"
 }
