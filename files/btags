@@ -1,0 +1,50 @@
+#!/usr/bin/bash
+Tmp=/tmp/$$
+Tmp0=/tmp/$$_$$
+Tmp1=/tmp/$$_$$_$$
+Tmp2=/tmp/$$_$$_$$_$$
+Tmp3=/tmp/$$_$$_$$_$$_$$
+trap 'exit 0' INT HUP QUIT TERM ALRM USR1
+trap 'rm -f "$Tmp" "$Tmp0" "$Tmp1" "$Tmp2" "$Tmp3"' EXIT
+rm -f "$Tmp $Tmp0 $Tmp1 $Tmp2 $Tmp3"  >/dev/null 2>&1;
+#   >/dev/null 2>&1;
+
+# Script to generate a ctags file listing functions from a bash script
+
+if [ -z "$1" ]; then
+  echo "Usage: $0 <bash_script_file>"
+  exit 1
+fi
+
+bash_script="$1"
+
+if [ ! -f "$bash_script" ]; then
+  echo "Error: File '$bash_script' not found."
+  exit 1
+fi
+E="$/;\""
+B="/^"
+T="\t"
+#
+# print	Test.java	/^    public void print() {$/;"	m	class:Test
+#
+# Use grep to find lines defining functions
+grep -n -E '^function[[:space:]]*[a-zA-Z_][a-zA-Z0-9_]*[[:space:]]*.*{$' "$bash_script" > $Tmp
+
+cat $Tmp | while IFS= read -r line; do
+  # Extract the function name
+  source_line=$(echo "$line" | gawk -F: '{print $2}')
+  function_name=$(echo "$line" | gawk '{print $2}')
+  function_name=$(echo "$line" | gawk '{print $2}')
+  function_name=$(echo "$function_name" | sed 's/[(]//')
+  function_name=$(echo "$function_name" | sed 's/[)]//')
+  #echo "Function Name: $function_name"
+
+  # Find the line number of the function definition
+  line_number=$(echo "$line" | cut -d':' -f1)
+
+  # Construct the ctags entry
+  #echo "::::::::    $function_name" "$bash_script" "$B$line$E" "$line_number;\"" f
+  #printf "%s\t%s\t%s\t%s\n" "$function_name" "$bash_script" "$B$source_line$E" "$line_number"
+  printf "%s\t%s\t%s\n" "$function_name" "$bash_script" "$B$source_line$E"
+done
