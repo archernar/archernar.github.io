@@ -1,0 +1,66 @@
+#!/usr/bin/bash
+Tmp=/tmp/$$
+Tmp0=/tmp/$$_$$
+Tmp1=/tmp/$$_$$_$$
+Tmp2=/tmp/$$_$$_$$_$$
+Tmp3=/tmp/$$_$$_$$_$$_$$
+trap 'exit 0' INT HUP QUIT TERM ALRM USR1
+trap 'rm -f "$Tmp" "$Tmp0" "$Tmp1" "$Tmp2" "$Tmp3"' EXIT
+rm -f "$Tmp $Tmp0 $Tmp1 $Tmp2 $Tmp3"  >/dev/null 2>&1;
+#   >/dev/null 2>&1;
+
+source /home/mestes/scm/basics/bash.library
+
+
+UPDATE="NO"
+REMOTE="YES"
+while getopts "bt" arg
+do
+    case $arg in
+        b) UPDATE="BASH"
+           ;;
+        t) UPDATE="TOC"
+           ;;
+    esac
+done
+shift $(($OPTIND - 1))
+
+filename="$1"
+
+if [[ -z "$filename" ]]; then
+  echo "Error: Filename not provided."
+  exit 1
+fi
+
+if [[ ! -f "$filename" ]]; then
+  echo "Error: File '$filename' not found."
+  exit 1
+fi
+
+D=`date`
+if [ "$UPDATE" == "BASH" ]; then                                                                                               
+    core.print.echo "#!/usr/bin/bash"
+fi
+if [ "$UPDATE" == "TOC" ]; then                                                                                               
+    echo "# ####################################################################################################"
+    cat toc
+    echo "# ####################################################################################################"
+    echo "#"
+    echo "#"
+fi
+
+
+cat "$filename" | gawk '
+BEGIN {
+    flag=0;
+}
+/^# ##END/ {
+    flag=1;
+    print $0;
+    next;
+}
+(flag==1) {
+    print $0;
+}'
+
+
