@@ -1,4 +1,7 @@
 function core.print.alltest() {
+      ansi.move "30" "10"
+      ansi.move "3" "3"
+      exit 0
       ansi.clear
       util.posprint.green 1   1 "X" 1
       util.posprint       1   2 "-" 39
@@ -7,7 +10,6 @@ function core.print.alltest() {
       util.posprint       10  2 "-" 39
       util.posprint.green 10 40 "X"
       ansi.move "60" "1"
-exit 0
       core.print.critical  "Log Level is $LOGLEVEL"
       core.print.debug     "debug"
       core.print.info      "info"
