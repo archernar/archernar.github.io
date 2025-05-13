@@ -57,27 +57,17 @@
 
     <div class="code-container">
         <pre>
-function core.print.alltest() {
-      ansi.clear
-      util.posprint.green 1   1 "X" 1
-      util.posprint       1   2 "-" 39
-      util.posprint.green 1  40 "X"
-      util.posprint.green 10  1 "X" 1
-      util.posprint       10  2 "-" 39
-      util.posprint.green 10 40 "X"
-      ansi.move "60" "1"
-exit 0
-      core.print.critical  "Log Level is $LOGLEVEL"
-      core.print.debug     "debug"
-      core.print.info      "info"
-      core.print.advice    "advice"
-      core.print.alert     "alert"
-      core.print.error     "error"
-      core.print.critical  "critical"
-      corePrintAlways    "always"
-      core.print.fatal     "fatal"
-      stacktracetest
-
+function ansi.getpos() {
+#        stdout, Output is in the format "row,column".
+  local IFS=$'\n'
+  local answer=$( (stty -echo; stty raw; printf "\033[6n"; sleep 0.1; cat) )
+  stty cooked; stty echo
+  IFS=$' '
+  if [[ $answer =~ ^$'\033\[([0-9]+);([0-9]+)R' ]]; then
+    echo "${BASH_REMATCH[1]},${BASH_REMATCH[2]}"
+  else
+    echo "1,1" >&2 # Default to 1,1 on error, to avoid script break.
+  fi
 }
 
         </pre>
