@@ -57,21 +57,16 @@
 
     <div class="code-container">
         <pre>
-function core.print.alltest() {
+function lookup_dns_record() {
 
-      core.stacktracedepth 1
-      core.loglevels
-      core.print.critical  "Log Level is $LOGLEVEL"
-      core.print.debug     "debug"
-      core.print.info      "info"
-      core.print.advice    "advice"
-      core.print.alert     "alert"
-      core.print.error     "error"
-      core.print.critical  "critical"
-      corePrintAlways    "always"
-      core.print.fatal     "fatal"
-      stacktracetest
+  # Use dig to query the DNS record, include error handling
+  if ! dig "$domain" "$record_type" +short >/dev/null 2>&1; then
+    echo "Error: Could not retrieve $record_type records for $domain"
+    return 1 # Return a non-zero exit code to indicate failure
+  fi
 
+  # added the check to make sure the output is printed only if the command was successful
+  dig "$domain" "$record_type" +short
 }
 
         </pre>
