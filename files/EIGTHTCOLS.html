@@ -57,9 +57,10 @@
 
     <div class="code-container">
         <pre>
-function ansi.home() {
-    #printf "\033[$(HALFTROWS);$(HALFTCOLS)H"
-    printf "\033[$(TROWS);1H"
+function EIGTHTCOLS() {
+  local cols=$(odd_or_less $(tput cols)) # Use 'local' to keep variables within the function's scope.
+  (( cols = cols / 8 ))
+  echo "$cols"
 }
 
         </pre>

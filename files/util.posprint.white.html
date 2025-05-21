@@ -63,7 +63,7 @@ function util.posprint.white() {
          fi
     ansi.move "$row" "$col"; 
     for ((i=0; i<$n; i++)); do
-        u.put "37" "$msg"
+        u.putc "37" "$msg"
     done
 }
 

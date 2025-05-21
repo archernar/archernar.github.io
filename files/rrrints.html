@@ -57,9 +57,10 @@
 
     <div class="code-container">
         <pre>
-function ansi.home() {
-    #printf "\033[$(HALFTROWS);$(HALFTCOLS)H"
-    printf "\033[$(TROWS);1H"
+function rrrints() {
+  local max=$2
+  random_integer $min $max; RRR1=$?
+  random_integer $min $max; RRR2=$?
 }
 
         </pre>

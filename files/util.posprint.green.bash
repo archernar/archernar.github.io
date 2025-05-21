@@ -4,6 +4,6 @@ function util.posprint.green() {
          fi
     ansi.move "$row" "$col"; 
     for ((i=0; i<$n; i++)); do
-        u.put "32" "$msg"
+        u.putc "32" "$msg"
     done
 }

@@ -57,9 +57,9 @@
 
     <div class="code-container">
         <pre>
-function ansi.home() {
-    #printf "\033[$(HALFTROWS);$(HALFTCOLS)H"
-    printf "\033[$(TROWS);1H"
+function TROWSACTUAL() {
+  local rows=$(tput lines)
+  echo "$rows"
 }
 
         </pre>

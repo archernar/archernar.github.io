@@ -59,10 +59,7 @@
         <pre>
 function util.set_background() {
     case "$color" in
-        black) 
-          printf "$BGWW";
-          printf "\033[40m"; 
-          printf "$BGBB" ;;
+        black) printf "\033[40m";; 
         red) printf "\033[41m" ;;
         green) printf "\033[42m" ;;
         yellow) printf "\033[43m" ;;

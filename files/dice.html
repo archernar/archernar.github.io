@@ -57,9 +57,10 @@
 
     <div class="code-container">
         <pre>
-function ansi.home() {
-    #printf "\033[$(HALFTROWS);$(HALFTCOLS)H"
-    printf "\033[$(TROWS);1H"
+function dice() {
+  local max=12
+  random_integer $min $max; DIE1=$?
+  random_integer $min $max; DIE2=$?
 }
 
         </pre>
