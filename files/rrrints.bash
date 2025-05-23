@@ -1,5 +1,6 @@
 function rrrints() {
   local max=$2
-  random_integer $min $max; RRR1=$?
-  random_integer $min $max; RRR2=$?
+  local range=$((max - min + 1))
+  RRR1=$((RANDOM % range + min))
+  RRR2=$((RANDOM % range + min))
 }

@@ -57,11 +57,10 @@
 
     <div class="code-container">
         <pre>
-function rrrrints() {
-  local max=$2
-  local range=$((max - min + 1))
-  RRRR1=$((RANDOM % range + min))
-  RRRR2=$((RANDOM % range + min))
+function twosided() {
+  local max=2
+  random_integer $min $max; DIE1=$?
+  random_integer $min $max; DIE2=$?
 }
 
         </pre>

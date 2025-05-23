@@ -1,4 +1,5 @@
 function rrints() {
-  random_integer $min $max; RR1=$?
-  random_integer $min $max; RR2=$?
+  local range=$((max - min + 1))
+  RR1=$((RANDOM % range + min))
+  RR2=$((RANDOM % range + min))
 }
