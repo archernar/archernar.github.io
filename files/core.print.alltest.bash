@@ -14,6 +14,8 @@ function core.print.alltest() {
        local q1=0; local q2=0; local q3=0; local q4=0;
 
 
+stack_init
+
        console.rulers
        ct=1;
        n=5
