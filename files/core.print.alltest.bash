@@ -17,7 +17,10 @@ function core.print.alltest() {
 stack_init
 
        console.rulers
-       ct=1;
+           #panel 5 5 $(TROWS -4) $(TCOLS -25)
+           panel 5 5 14 25
+           exit 0
+       c=1;
        n=5
        m=5
        while [ $ct -lt 420 ]; do

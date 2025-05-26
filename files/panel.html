@@ -64,6 +64,10 @@ function panel() {
          local R=$1;C=$2;L=$3;W=$4;M=$5      # Bash-Function-Args
          local RPLUS=$((R+1))
          local CPLUS=$((C+1))
+         local RPLUS2=$((R+2))
+         local CPLUS2=$((C+2))
+         local RPLUS3=$((R+3))
+         local CPLUS3=$((C+3))
          local REND=$((R+L+1))
          local CEND=$((C+W+1))
          local TR=$(TROWS)
@@ -77,16 +81,16 @@ function panel() {
         echo "PANEL FAIL:  $R $C $L $W" >> /tmp/err
         return
     fi
-    if [ $R -lt 4 ]; then
-        R=4
+    if [ $R -lt 2 ]; then
+        R=2
     fi
-    if [ $C -lt 4 ]; then
+    if [ $C -lt 3 ]; then
         C=4
     fi
-    if [ $W -lt 4 ]; then
+    if [ $W -lt 3 ]; then
         W=4
     fi
-    if [ $L -lt 4 ]; then
+    if [ $L -lt 3 ]; then
         L=4
     fi
         
@@ -116,6 +120,8 @@ stack_push $W
 
     util.pprint $REND $C "$CORNER" 1;util.pprint $REND $CPLUS "$BOTTOM" $((W));util.pprint $REND $CEND "$CORNER" 1
     util.pprint $RPLUS $CPLUS "$L/$W" 1
+    util.pprint $RPLUS2 $CPLUS "$(TROWS)" 1
+    util.pprint $RPLUS3 $CPLUS "$(TCOLS)" 1
 
 
 
