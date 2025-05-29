@@ -1,5 +1,6 @@
 function core.print.critical() {
-         local lvl="$LL0A"
+         LASTCONSOLEMESSAGE="$1"
+         local lvl=$LL0
     local dex=0     
     if [[ -z "$ctrl" ]]; then
         dex=1
@@ -7,8 +8,8 @@ function core.print.critical() {
         dex=ctrl
     fi
     local ff=$(printf "%-32s\n" "${FUNCNAME[dex]}")
-    local sz="$(printf "%s %s: %s %s" "Crit$lvl" "$SILENT" "$ff" "$msg")"
-    if [ "$LOGLEVEL" -ge $lvl ]; then
+    local sz="$(printf "%s %s: %s %s" "CRIT $lvl" "$SILENT" "$ff" "$msg")"
+    if [ $LOGLEVEL -ge $lvl ]; then
         util.print.color red "$sz"
     fi
 }

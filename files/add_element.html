@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code</title>
+    <style>
+        body {
+            background-color: #1e1e1e; /* Dark background for the page */
+            color: #d4d4d4; /* Light text color for the page */
+        }
+
+        .code-container {
+            background-color: #252526; /* Darker background for the code block */
+            border: 1px solid #333; /* Dark gray border */
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: monospace, sans-serif;
+            font-size: 18px;
+            line-height: 1.4;
+        }
+
+        .code-container pre {
+            margin: 0;
+        }
+
+        .comment {
+            color: #6a9955; /* Green for comments */
+        }
+
+        .keyword {
+            color: #569cd6; /* Light blue for keywords */
+            font-weight: bold;
+        }
+
+        .string {
+            color: #ce9178; /* Orange/brown for strings */
+        }
+
+        .number {
+            color: #b5cea8; /* Light green for numbers */
+        }
+
+        .class-name {
+            color: #4ec9b0; /* Cyan for class names */
+        }
+
+        .method-name {
+            color: #dcdcaa; /* Yellow for method names */
+        }
+    </style>
+</head>
+<body>
+    <a href='https://archernar.github.io/files/index.html'>home</a><br>
+    <h1>Code Library</h1>
+
+    <div class="code-container">
+        <pre>
+function add_element() {
+  ((w=w-DBPRINTCOL-5))
+  local element_to_add="$(echo "$1" | gawk -v w="$w" '{print substr($0,1,w)}')"
+  # local element_to_add="$1"
+
+  if [[ -z "$element_to_add" ]]; then
+    echo "Usage: add_element <element>"
+    return 1
+  fi
+
+  my_array+=("$element_to_add")
+  if [[ ${#my_array[@]} -gt  $(TROWS -2) ]]; then
+    my_array=("${my_array[@]:1}")
+  fi
+  #echo "Added '$element_to_add'."
+  #display_array
+}
+
+        </pre>
+    </div>
+</body>
+</html>

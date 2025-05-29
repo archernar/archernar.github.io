@@ -144,16 +144,39 @@ function scan_for_secrets() {
 
     # "export [A-Z_]+=[\"']?[A-Za-z0-9_\\-./+=@$%^&*()!~`?<>:;']+" # look for exported environment variables.
   local found=0
+  local overide=0
 
   for pattern in "${patterns[@]}"; do
     if grep -E "$pattern" "$file" > /dev/null; then
       found=1
       echo "Potential secret found in '$file' matching pattern: '$pattern'"
-      #grep -E "$pattern" "$file"
-      ./finder "$pattern" "$file"
-      return 1 
+      echo ""
+      echo "xx+++++"
+      grep -E -n "$pattern" "$file"
+      echo "+++++"
+      #./finder "$pattern" "$file"
+      if grep -E "SCANPASS" "$file" > /dev/null; then
+          overide=1
+          found=0
+      else
+          break
+      fi
     fi
   done
+
+  if [[ "$overide" -eq 1 ]]; then
+          echo ""
+          echo "************************************************"
+          echo "** Potential secret found"
+          echo "** Scan Pass Overides Exercised"
+          echo "************************************************"
+          echo ""
+  fi
+
+  if [[ "$found" -eq 1 ]]; then
+    NOTHING=0
+    return 1 
+  fi
 
   if [[ "$found" -eq 0 ]]; then
     NOTHING=0

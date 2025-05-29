@@ -1,4 +1,5 @@
 function util.print.color() {
+         LASTCONSOLEMESSAGE="$2"
     if core._should_print_color 1; then
         case "$color" in
             black)   util.println.white   "$sz" ;;

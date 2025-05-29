@@ -58,8 +58,7 @@
     <div class="code-container">
         <pre>
 function core.print.alltest() {
-         local void=0    # Bash-Function-Args
-
+       local void=0    # Bash-Function-Args
 
        local ct=1;
        local sz="";
@@ -72,13 +71,68 @@ function core.print.alltest() {
        local w=0; local x=0; local y=0; local z=0;
        local q1=0; local q2=0; local q3=0; local q4=0;
 
+               ansi.clear
+initialize_empty_array
 
+
+D=`date`
+      SZ="$(/usr/bin/bash --version | head -1)"
+      BAR=$(repeat_char "_" ${#SZ})
+      dprint "$SZ"
+      dprint "MOE"
+
+      ansi.move "1" "1"
+      corePrintAlways      $BAR
+      dprint               "$LASTCONSOLEMESSAGE"
+      corePrintAlways      "update $D"
+      dprint               "$LASTCONSOLEMESSAGE"
+      corePrintAlways      "$SZ"
+      dprint               "$LASTCONSOLEMESSAGE"
+      corePrintAlways      "Log Level is $LOGLEVEL"
+      dprint               "$LASTCONSOLEMESSAGE"
+      corePrintAlways      $BAR
+      dprint               "$LASTCONSOLEMESSAGE"
+      core.print.debug     "debug"
+      dprint               "$LASTCONSOLEMESSAGE"
+      core.print.info      "info"
+      dprint               "$LASTCONSOLEMESSAGE"
+      core.print.advice    "advice"
+      dprint               "$LASTCONSOLEMESSAGE"
+      core.print.alert     "alert"
+      dprint               "$LASTCONSOLEMESSAGE"
+      core.print.error     "error"
+      dprint               "$LASTCONSOLEMESSAGE"
+      core.print.critical  "critical"
+      dprint               "$LASTCONSOLEMESSAGE"
+      corePrintAlways      $BAR
+         ct=0;
+      dprint               "$LASTCONSOLEMESSAGE"
+
+         #set_cursor_color_black
+         while [ $ct -lt 5 ]; do
+             min=100; local max=500;
+             range=$((max - min + 1))
+             R=$((RANDOM % range + min))
+             dprint "$R"
+             ((ct=ct+1))
+         done
+         #set_cursor_color_white
+
+ansi.gutter2
+exit 1
+dbprint "Current Array: [${my_array[*]}]"
+dbprint "---"
+
+kv_init
+kv_set "name" "michael"
 stack_init
-
+echo "OK"
+exit 0
+exit 0
        console.rulers
+exit 0
            #panel 5 5 $(TROWS -4) $(TCOLS -25)
            panel 5 5 14 25
-           exit 0
        c=1;
        n=5
        m=5
@@ -97,18 +151,22 @@ stack_init
            panel $(TROWS -5) 10 3 3
            panel $(TROWS -6) 10 3 3
            panel $(TROWS -7) 10 3 3
-           exit 0
 
        ct=1;
        n=5
        m=5
        while [ $ct -lt 420 ]; do
            panel $m $n 5 10 
+           kv_set "panel$ct" "$m $n 5 10"
            ((ct=ct+1))
            ((n=n+2))
            ((m=m+2))
        done
        ansi.gutteractual
+
+
+
+
        ct=1;
        n=25
        m=5
@@ -170,15 +228,15 @@ stack_init
        ansi.gutteractual
 exit 0
       core.stacktracedepth 1
-      core.loglevels
-      core.print.critical  "Log Level is $LOGLEVEL"
+      #core.loglevels
+      corePrintAlways      "Log Level is $LOGLEVEL"
       core.print.debug     "debug"
       core.print.info      "info"
       core.print.advice    "advice"
       core.print.alert     "alert"
       core.print.error     "error"
       core.print.critical  "critical"
-      corePrintAlways    "always"
+      corePrintAlways      "always"
       core.print.fatal     "fatal"
       stacktracetest
 

@@ -1,3 +1,3 @@
 function core.logset() {
-   LOGLEVEL=$level
+   #LOGLEVEL=$level
 }
