@@ -1,7 +1,4 @@
 function add_element() {
-  ((w=w-DBPRINTCOL-5))
-  local element_to_add="$(echo "$1" | gawk -v w="$w" '{print substr($0,1,w)}')"
-  # local element_to_add="$1"
 
   if [[ -z "$element_to_add" ]]; then
     echo "Usage: add_element <element>"

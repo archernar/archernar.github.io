@@ -7,6 +7,6 @@ function core.print.advice() {
     fi
     local sz="$(printf "%s %s: %s %s" "ADVC $lvl" "$SILENT" "$ff" "$msg")"
     if [ $LOGLEVEL -gt $lvl ]; then
-        util.print.color blue "$sz"
+        echo "$(szblue "$sz")"
     fi
 }

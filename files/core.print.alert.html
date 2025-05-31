@@ -64,9 +64,9 @@ function core.print.alert() {
     local sz="$(printf "%s %s: %s %s" "ALRT $lvl" "$SILENT" "$ff" "$msg")"
     if [ $LOGLEVEL -gt $lvl ]; then
         if core._should_print_color 1; then
-            util.println.magenta "$sz"
+            echo "$(szmagenta "$sz")"
         else
-            util.println.white "$sz"
+            echo "$(szwhite "$sz")"
         fi
     fi
 }

@@ -61,19 +61,19 @@ function util.print.color() {
          LASTCONSOLEMESSAGE="$2"
     if core._should_print_color 1; then
         case "$color" in
-            black)   util.println.white   "$sz" ;;
-            red)     util.println.red     "$sz" ;;
-            green)   util.println.green   "$sz" ;;
-            yellow)  util.println.white   "$sz" ;;
-            blue)    util.println.blue    "$sz" ;;
-            magenta) util.println.magenta "$sz" ;;
-            cyan)    util.println.white   "$sz" ;;
-            white)   util.println.white   "$sz" ;;
-            default) util.println.white   "$sz" ;;
+            black)   echo "$(szblack   "$sz")"  ;;
+            red)     echo "$(szred     "$sz")"  ;;
+            green)   echo "$(szgreen   "$sz")"  ;;
+            yellow)  echo "$(szyellow  "$sz")"  ;;
+            blue)    echo "$(szblue    "$sz")"  ;;
+            magenta) echo "$(szmagenta "$sz")"  ;;
+            cyan)    echo "$(szcyan    "$sz")"  ;;
+            white)   echo "$(szwhite   "$sz")"  ;;
+            default) echo "$(szwhite   "$sz")"  ;;
             *) echo "Invalid color: $color" >&2; return 1 ;;
         esac
     else
-        util.println.white "$sz"
+        echo "$(szwhite   "$sz")"
     fi
 }
 

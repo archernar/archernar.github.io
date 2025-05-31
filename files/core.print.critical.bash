@@ -10,6 +10,6 @@ function core.print.critical() {
     local ff=$(printf "%-32s\n" "${FUNCNAME[dex]}")
     local sz="$(printf "%s %s: %s %s" "CRIT $lvl" "$SILENT" "$ff" "$msg")"
     if [ $LOGLEVEL -ge $lvl ]; then
-        util.print.color red "$sz"
+        echo "$(szred "$sz")"
     fi
 }

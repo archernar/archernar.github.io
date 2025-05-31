@@ -1,3 +1,3 @@
 function u.put() {
-    printf "%s" "$msg"
+    printf "%s\n" "$msg"
 }

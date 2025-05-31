@@ -4,6 +4,6 @@ function core.print.debug() {
     local ff=$(printf "%-32s\n" "${FUNCNAME[1]}")
     local sz="$(printf "%s %s: %s %s" "DBUG $lvl" "$SILENT" "$ff" "$msg")"
     if [ $LOGLEVEL -ge $lvl ]; then
-        util.println.white "$sz"
+        echo "$(szyellow "$sz")"
     fi
 }

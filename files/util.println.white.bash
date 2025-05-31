@@ -1,3 +1,3 @@
 function util.println.white() {
-    u.putln "37" "$msg"
+    u.putln "$(szwhite "$msg")"
 }

@@ -1,3 +1,3 @@
 function util.print.magenta() {
-    u.putln "35" "$msg"
+    u.putln "$(szmagenta "$msg")"
 }

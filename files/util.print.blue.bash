@@ -1,3 +1,3 @@
 function util.print.blue() {
-    u.putln "34" "$msg"
+    u.putln "$(szblue "$msg")"
 }

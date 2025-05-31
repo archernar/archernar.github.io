@@ -1,3 +1,3 @@
 function util.println.green() {
-    u.putln "32" "$msg"
+    u.putln "$(szgreen  "$msg")"
 }

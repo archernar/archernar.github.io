@@ -11,7 +11,6 @@ function core.print.alltest() {
        local i=0;
        local w=0; local x=0; local y=0; local z=0;
        local q1=0; local q2=0; local q3=0; local q4=0;
-
                ansi.clear
 initialize_empty_array
 
@@ -60,7 +59,6 @@ D=`date`
          #set_cursor_color_white
 
 ansi.gutter2
-exit 1
 dbprint "Current Array: [${my_array[*]}]"
 dbprint "---"
 
@@ -68,10 +66,7 @@ kv_init
 kv_set "name" "michael"
 stack_init
 echo "OK"
-exit 0
-exit 0
        console.rulers
-exit 0
            #panel 5 5 $(TROWS -4) $(TCOLS -25)
            panel 5 5 14 25
        c=1;
