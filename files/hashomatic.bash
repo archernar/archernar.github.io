@@ -8,7 +8,7 @@ function hashomatic() {
     fecho "Error: File '$filename' not found."
     return 1
   fi
-  core.print.critical "HashoMatic $filename"
+  printCritical "HashoMatic $filename"
   if [ $(isSameHash "$filename") == "0" ]; then
     IHASH=$(md5sum "$tmp1" | awk '{print $1}')
     cat $tmp1  > "$filename"

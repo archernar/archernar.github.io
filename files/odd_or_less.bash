@@ -1,6 +1,7 @@
 function odd_or_less() {
   if [[ ! "$num" =~ ^[0-9]+$ ]]; then
-    echo "Error: Input must be a non-negative integer." >&2
+    echo "XXXX Error: Input must be a non-negative integer." >&2
+    echo "[$num]" >&2
     exit 1
     return 1
   fi

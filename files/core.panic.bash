@@ -19,6 +19,6 @@ function core.panic() {
 		printf '%s\n' "  ERR: $ERR" >&2
 	fi
 
-	core.print.stacktrace
+	printStackTrace
 	exit "$code"
 }

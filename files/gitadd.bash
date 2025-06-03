@@ -1,6 +1,6 @@
 function gitadd() {
          paramsf "$filename"
-  core.print.advice "git add $filename"
+  printAdvice "git add $filename"
   git add "$filename"
   return 0
 }
