@@ -15,11 +15,11 @@ function panel() {
          local TRE=$((TR-1))
          local E=0
     if [ $REND -ge $TRE ]; then
-        echo "PANEL FAIL:  $R $C $L $W" >> /tmp/err
+        printCritical "PANEL FAIL:  $R $C $L $W (REND exceeds TRE)"
         return
     fi
     if [ $CEND -gt $(TCOLS) ]; then
-        echo "PANEL FAIL:  $R $C $L $W" >> /tmp/err
+        printCritical "PANEL FAIL:  $R $C $L $W (CEND exceeds TCOLS)"
         return
     fi
     if [ $R -lt 2 ]; then
@@ -59,10 +59,10 @@ stack_push $W
       #echo $ct
     done
 
-    util.pprint $REND $C "$CORNER" 1;util.pprint $REND $CPLUS "$BOTTOM" $((W));util.pprint $REND $CEND "$CORNER" 1
-    util.pprint $RPLUS $CPLUS "$L/$W" 1
-    util.pprint $RPLUS2 $CPLUS "$(TROWS)" 1
-    util.pprint $RPLUS3 $CPLUS "$(TCOLS)" 1
+#     util.pprint $REND $C "$CORNER" 1;util.pprint $REND $CPLUS "$BOTTOM" $((W));util.pprint $REND $CEND "$CORNER" 1
+#     util.pprint $RPLUS $CPLUS "$L/$W" 1
+#     util.pprint $RPLUS2 $CPLUS "$(TROWS)" 1
+#     util.pprint $RPLUS3 $CPLUS "$(TCOLS)" 1
 
 
 

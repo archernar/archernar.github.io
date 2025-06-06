@@ -149,11 +149,9 @@ function scan_for_secrets() {
   for pattern in "${patterns[@]}"; do
     if grep -E "$pattern" "$file" > /dev/null; then
       found=1
-      echo "Potential secret found in '$file' matching pattern: '$pattern'"
-      echo ""
-      echo "xx+++++"
+      printCritical "Potential secret found in '$file' matching pattern: '$pattern'"
+      printCritical ""
       grep -E -n "$pattern" "$file"
-      echo "+++++"
       #./finder "$pattern" "$file"
       if grep -E "SCANPASS" "$file" > /dev/null; then
           overide=1
@@ -165,12 +163,12 @@ function scan_for_secrets() {
   done
 
   if [[ "$overide" -eq 1 ]]; then
-          echo ""
-          echo "************************************************"
-          echo "** Potential secret found"
-          echo "** Scan Pass Overides Exercised"
-          echo "************************************************"
-          echo ""
+          printCritical ""
+          printCritical "************************************************"
+          printCritical "** Potential secret found"
+          printCritical "** Scan Pass Overides Exercised"
+          printCritical "************************************************"
+          printCritical ""
   fi
 
   if [[ "$found" -eq 1 ]]; then
@@ -180,7 +178,7 @@ function scan_for_secrets() {
 
   if [[ "$found" -eq 0 ]]; then
     NOTHING=0
-    echo "CLEAR: '$file'"
+    printInfo "CLEAR: '$file'"
   fi
 
   return 0
