@@ -10,9 +10,9 @@ function initdbprint() {
           ((CEND=CEND-c))
           ((REND=REND-row))
           ((REND=REND-2))
-#     INIT_DBPRINTCOL=$row
-#     INIT_DBPRINTROW=$col
-#     DBPRINTCOL=$INIT_DBPRINTCOL
-#     DBPRINTROW=$INIT_DBPRINTROW
-    panel $r $c $REND $CEND
+export     INIT_DBPRINTCOL=$row
+export     INIT_DBPRINTROW=$col
+export     DBPRINTCOL=$INIT_DBPRINTCOL
+export     DBPRINTROW=$INIT_DBPRINTROW
+#    panel $r $c $REND $CEND
 }

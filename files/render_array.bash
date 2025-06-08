@@ -4,8 +4,6 @@ function render_array() {
 
   DBPRINTCOL=$INIT_DBPRINTCOL
   DBPRINTROW=$INIT_DBPRINTROW
-  #DBPRINTCOL=90
-  #DBPRINTROW=3
   for ((i = 0; i < len; i++)); do
       item="${my_array[$i]}"
       #echo "$item" >> /tmp/err

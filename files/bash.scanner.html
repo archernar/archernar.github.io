@@ -82,12 +82,12 @@ function scan_for_secrets() {
          local file="$1"               # Bash-Function-Args
 
   if [[ -z "$file" ]]; then
-    echo "Usage: scan_for_secrets <file>"
+    printCritical "Usage: scan_for_secrets <file>"
     return 1
   fi
 
   if [[ ! -f "$file" ]]; then
-    echo "Error: File '$file' not found."
+    printCritical "Error: File '$file' not found."
     return 1
   fi
 
@@ -178,7 +178,7 @@ function scan_for_secrets() {
 
   if [[ "$found" -eq 0 ]]; then
     NOTHING=0
-    printInfo "CLEAR: '$file'"
+    printDebug "CLEAR: '$file'"
   fi
 
   return 0

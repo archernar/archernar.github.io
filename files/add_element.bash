@@ -10,6 +10,7 @@ function add_element() {
   if [[ ${#my_array[@]} -gt  $(TROWS -8) ]]; then
     my_array=("${my_array[@]:1}")
   fi
+  #sleep 0.05
   #echo "Added '$element_to_add'."
   #display_array
 }

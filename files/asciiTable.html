@@ -57,14 +57,15 @@
 
     <div class="code-container">
         <pre>
-function printAdvice() {
-    if [[ "$#" -gt 0 ]]; then
-         printAtLevel "$msg" $LL3 "ADVC" blue
-    else
-        while IFS= read -r msg; do
-            printAtLevel "$msg" $LL3 "ADVC" blue
-        done
-    fi
+function asciiTable() {
+  echo "DEC HEX CHAR"
+  echo "----------------------------------------"
+
+  for i in $(seq 32 200); do
+    printf "%3d %3x %s\n" "$i" "$i" "$(printf '\\x%x' "$i")"
+  done
+
+  echo "----------------------------------------"
 }
 
         </pre>

@@ -58,7 +58,16 @@
     <div class="code-container">
         <pre>
 function panel() {
+         VAR_HLINE_SINGLE=$'\u2500' # '─'
+# Vertical line
+         VAR_VLINE_SINGLE=$'\u2502' # '│'
+# Corners
+         VAR_CORNER_TL_SINGLE=$'\u250C' # '┌' (Top-Left)
+         VAR_CORNER_TR_SINGLE=$'\u2510' # '┐' (Top-Right)
+         VAR_CORNER_BL_SINGLE=$'\u2514' # '└' (Bottom-Left)
+         VAR_CORNER_BR_SINGLE=$'\u2518' # '┘' (Bottom-Right)
          local SIDE="|"
+         SIDE=VAR_HLINE_SINGLE=$'\u2500' # '─'
          local TOP="-"
          local BOTTOM="-"
          local R=$1;C=$2;L=$3;W=$4;M=$5      # Bash-Function-Args
@@ -71,14 +80,20 @@ function panel() {
          local REND=$((R+L+1))
          local CEND=$((C+W+1))
          local TR=$(TROWS)
+         local FROW=$((R+1))
+         local LROW=$((R+L))
+         local FCOL=$((C+1))
+         local LCOL=$((C+1))
          local TRE=$((TR-1))
+         local TC=$(TCOLS)
          local E=0
+         printInfo "PANEL: $R $C $L $W FROW=$FROW LROW=$LROW FCOL=$FCOL LCOL=$LCOL TROWS=$TR TCOLS=$TC TRE=$TRE CEND=$CEND REND=$REND"
     if [ $REND -ge $TRE ]; then
-        printCritical "PANEL FAIL:  $R $C $L $W (REND exceeds TRE)"
+        printCritical "PANEL FAIL:  $R $C $L $W (REND=$REND exceeds TRE=$TRE)"
         return
     fi
     if [ $CEND -gt $(TCOLS) ]; then
-        printCritical "PANEL FAIL:  $R $C $L $W (CEND exceeds TCOLS)"
+        printCritical "PANEL FAIL:  $R $C $L $W (CEND=$CEND exceeds TCOLS=$TC)"
         return
     fi
     if [ $R -lt 2 ]; then
@@ -94,11 +109,6 @@ function panel() {
         L=4
     fi
         
-stack_push $R
-stack_push $C
-stack_push $L
-stack_push $W
-
     ((WH = W/2))
     ((HH = L/2))
 
@@ -118,7 +128,7 @@ stack_push $W
       #echo $ct
     done
 
-#     util.pprint $REND $C "$CORNER" 1;util.pprint $REND $CPLUS "$BOTTOM" $((W));util.pprint $REND $CEND "$CORNER" 1
+    util.pprint $REND $C "$CORNER" 1;util.pprint $REND $CPLUS "$BOTTOM" $((W));util.pprint $REND $CEND "$CORNER" 1
 #     util.pprint $RPLUS $CPLUS "$L/$W" 1
 #     util.pprint $RPLUS2 $CPLUS "$(TROWS)" 1
 #     util.pprint $RPLUS3 $CPLUS "$(TCOLS)" 1
