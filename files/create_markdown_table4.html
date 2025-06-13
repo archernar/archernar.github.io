@@ -17,7 +17,7 @@
             border-radius: 5px;
             overflow-x: auto;
             font-family: monospace, sans-serif;
-            font-size: 18px;
+            font-size: 24px;
             line-height: 1.4;
         }
 
@@ -89,8 +89,10 @@ function create_markdown_table4() {
   while IFS= read -r line; do
     if [[ $line_count -eq 0 ]]; then
       if [[ $first_row -eq 1 ]]; then
-          echo "| $STRING | $STRING | $STRING | $STRING |"
-          echo "|----------|----------|----------|----------|"
+#           echo "| $STRING | $STRING | $STRING | $STRING |"
+#           echo "|----------|----------|----------|----------|"
+          echo "| $STRING | $STRING | $STRING | $STRING | $STRING |"
+          echo "|----------|----------|----------|----------|----------|"
           first_row=0
       fi
     fi
@@ -99,7 +101,7 @@ function create_markdown_table4() {
 
     line_count=$((line_count + 1))
 
-    if [[ $line_count -eq 4 ]]; then
+    if [[ $line_count -eq 5 ]]; then
       echo "$row|"
       row=""
       line_count=0
@@ -108,7 +110,7 @@ function create_markdown_table4() {
 
   # Handle remaining lines if the total line count is not a multiple of 5
   if [[ $line_count -gt 0 ]]; then
-    for ((i = line_count; i < 4; i++)); do
+    for ((i = line_count; i < 5; i++)); do
         row+="|  "
     done
     echo "$row|"

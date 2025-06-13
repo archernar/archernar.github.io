@@ -1,0 +1,3 @@
+function logset() {
+   #LOGLEVEL=$level
+}

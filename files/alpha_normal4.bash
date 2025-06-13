@@ -52,5 +52,6 @@ split -l $N "$tmp1" sf
 paste -d'\n' sfaa sfab sfac sfad> "$tmp1"
 
 cp "$tmp1" "$filename"
+rm -f sfaa sfab sfac sfad
 
 }

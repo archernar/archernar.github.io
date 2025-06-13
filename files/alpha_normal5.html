@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code</title>
+    <style>
+        body {
+            background-color: #1e1e1e; /* Dark background for the page */
+            color: #d4d4d4; /* Light text color for the page */
+        }
+
+        .code-container {
+            background-color: #252526; /* Darker background for the code block */
+            border: 1px solid #333; /* Dark gray border */
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: monospace, sans-serif;
+            font-size: 24px;
+            line-height: 1.4;
+        }
+
+        .code-container pre {
+            margin: 0;
+        }
+
+        .comment {
+            color: #6a9955; /* Green for comments */
+        }
+
+        .keyword {
+            color: #569cd6; /* Light blue for keywords */
+            font-weight: bold;
+        }
+
+        .string {
+            color: #ce9178; /* Orange/brown for strings */
+        }
+
+        .number {
+            color: #b5cea8; /* Light green for numbers */
+        }
+
+        .class-name {
+            color: #4ec9b0; /* Cyan for class names */
+        }
+
+        .method-name {
+            color: #dcdcaa; /* Yellow for method names */
+        }
+    </style>
+</head>
+<body>
+    <a href='https://archernar.github.io/files/index.html'>home</a><br>
+    <h1>Code Library</h1>
+
+    <div class="code-container">
+        <pre>
+function alpha_normal5() {
+  local tmp1=$(mktemp)
+  local tmp2=$(mktemp)
+  local tmp3=$(mktemp)
+  local tmp4=$(mktemp)
+  local tmp5=$(mktemp)
+  rm -f "$tmp1" >/dev/null 2>&1
+  rm -f "$tmp2" >/dev/null 2>&1
+  rm -f "$tmp3" >/dev/null 2>&1
+  rm -f "$tmp4" >/dev/null 2>&1
+  rm -f "$tmp5" >/dev/null 2>&1
+
+  if [[ -z "$filename" ]]; then
+    fecho "Error: Filename not provided."
+    return 1
+  fi
+
+  if [[ ! -f "$filename" ]]; then
+    fecho "Error: File '$filename' not found."
+    return 1
+  fi
+
+cat "$filename" | sort | uniq > "$tmp1"
+N=`wc -l "$tmp1" | gawk '{print $1}'`
+M=$((N % 4));
+printInfo "The function list contains $N functions"
+if [ "$M" == "0" ]; then                                                                                               
+    printInfo "Nothing to Add"
+fi
+if [ "$M" == "4" ]; then                                                                                               
+    printInfo "Adding 1 functions"
+    echo "zzzone()" >> "$tmp1"
+fi
+if [ "$M" == "3" ]; then                                                                                               
+    printInfo "Adding 2 functions"
+    echo "zzzone()" >> "$tmp1"
+    echo "zzztwo()" >> "$tmp1"
+fi
+if [ "$M" == "2" ]; then                                                                                               
+    printInfo "Adding 3 functions"
+    echo "zzzone()" >> "$tmp1"
+    echo "zzztwo()" >> "$tmp1"
+    echo "zzzthree()" >> "$tmp1"
+fi
+if [ "$M" == "1" ]; then                                                                                               
+    printInfo "Adding 4 functions"
+    echo "zzzone()" >> "$tmp1"
+    echo "zzztwo()" >> "$tmp1"
+    echo "zzzthree()" >> "$tmp1"
+    echo "zzzfour()" >> "$tmp1"
+fi
+
+cat "$tmp1" | sort | uniq > "$tmp2"; cp "$tmp2" "$tmp1"
+N=`wc -l "$tmp1" | gawk '{print $1}'`
+printInfo "The function list contains $N functions"
+N=$((N / 5));
+rm -f sfa*  >/dev/null 2>&1
+sed -i 's/zzz.*$/\&nbsp;/g' "$tmp1"
+
+split -l $N "$tmp1" sf
+paste -d'\n' sfaa sfab sfac sfad sfae> "$tmp1"
+
+cp "$tmp1" "$filename"
+rm -f sfaa sfab sfac sfad sfae
+
+}
+
+        </pre>
+    </div>
+</body>
+</html>
