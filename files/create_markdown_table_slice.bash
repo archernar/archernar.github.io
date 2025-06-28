@@ -2,6 +2,7 @@ function create_markdown_table_slice() {
   local tmp=$(mktemp)
   local LEN=""
   local STRING=""
+  local label=""
 
   # Check if the input file exists
   if [[ ! -f "$input_file" ]]; then
@@ -13,13 +14,24 @@ function create_markdown_table_slice() {
   STRING=`repeat_char " " "24"`
 
   rm -f "$tmp" >/dev/null 2>&1
-  rm -f "frost" >/dev/null 2>&1
   if [[ "$str" == "MAKELINKS" ]]; then
-      cat "$input_file" |gawk '{n=split($0,A,"/");sub(/[.]html$/, "", A[n]);print "[" A[n] "](" $0 ")";}' > $tmp
-      cat "$input_file" |gawk '{n=split($0,A,"/");sub(/[.]html$/, "", A[n]);print A[n];}' >> frost
+      cat "$input_file" |gawk '
+                         BEGIN {
+                                NOTHING=0;
+                         }
+                         {
+                             n=split($0,A,"/");
+                             nme=A[n];
+                             sub(/[.]html$/, "", nme);
+                             sub(/[.]pdf/,"",nme); 
+                             nme=substr(nme,1,42);
+                             gsub(/_/," ",nme);
+                             gsub(/Programming/,"Prog",nme);
+                             gsub(/Architecture/,"Arch",nme);
+                             print "[" nme "](" $0 ")";
+                         }' > $tmp
   else
       cat "$input_file"  > $tmp
-      cat "$input_file"  > frost
   fi
 
   # Read lines from the file and create table rows

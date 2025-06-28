@@ -17,9 +17,8 @@ function alpha_normal2() {
 cat "$filename" | sort | uniq > "$tmp1"
 N=`wc -l "$tmp1" | gawk '{print $1}'`
 M=$((N % 2));
-printInfo "The function list contains $N functions"
 if [ "$M" == "0" ]; then                                                                                               
-    printInfo "Nothing to Add"
+    NOTHING=0
 fi
 if [ "$M" == "2" ]; then                                                                                               
     printInfo "Adding 1 function"
@@ -32,7 +31,6 @@ fi
 
 cat "$tmp1" | sort | uniq > "$tmp2"; cp "$tmp2" "$tmp1"
 N=`wc -l "$tmp1" | gawk '{print $1}'`
-printInfo "The function list contains $N functions"
 N=$((N / 2));
 rm -f sfa*  >/dev/null 2>&1
 sed -i 's/zzz.*$/\&nbsp;/g' "$tmp1"

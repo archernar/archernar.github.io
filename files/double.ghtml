@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code</title>
+    <style>
+        body {
+            background-color: #1e1e1e; /* Dark background for the page */
+            color: #d4d4d4; /* Light text color for the page */
+        }
+
+        .code-container {
+            background-color: #252526; /* Darker background for the code block */
+            border: 1px solid #333; /* Dark gray border */
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: monospace, sans-serif;
+            font-size: 24px;
+            line-height: 1.4;
+        }
+
+        .code-container pre {
+            margin: 0;
+        }
+
+        .comment {
+            color: #6a9955; /* Green for comments */
+        }
+
+        .keyword {
+            color: #569cd6; /* Light blue for keywords */
+            font-weight: bold;
+        }
+
+        .string {
+            color: #ce9178; /* Orange/brown for strings */
+        }
+
+        .number {
+            color: #b5cea8; /* Light green for numbers */
+        }
+
+        .class-name {
+            color: #4ec9b0; /* Cyan for class names */
+        }
+
+        .method-name {
+            color: #dcdcaa; /* Yellow for method names */
+        }
+    </style>
+</head>
+<body>
+    <a href='https://archernar.github.io/files/index.html'>home</a><br>
+    <h1>Code Library</h1>
+
+    <div class="code-container">
+        <pre>
+  function double(num){return num * 2;}
+  print "Doubled numbers: " array_join(doubled_numbers, ", ");
+
+  # List operation examples
+  list[1] = 10; list[2] = 20; list[3] = 30;
+
+  list_append(list, 40);
+  list_prepend(list, 5);
+  list_insert(list, 3, 25);
+  list_remove_at(list, 4);
+  list_remove_value(list, 20);
+
+  print "List: " array_join(list, ", ");
+  print "Get index 2: " list_get(list, 2);
+  print "Index of 30: " list_index_of(list, 30);
+  print "Last Index of 10: " list_last_index_of(list,10);
+  list_reverse(list);
+  print "Reversed list: " array_join(list, ", ");
+
+  list2[1] = 100; list2[2] = 200;
+  list_concat(list, list2, combined_list);
+  print "Combined List: " array_join(combined_list, ", ");
+
+  list_slice(combined_list, 2, 4, sliced_list);
+  print "Sliced List: " array_join(sliced_list, ", ");
+}
+
+        </pre>
+    </div>
+</body>
+</html>

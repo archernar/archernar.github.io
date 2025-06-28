@@ -23,27 +23,26 @@ function alpha_normal5() {
 cat "$filename" | sort | uniq > "$tmp1"
 N=`wc -l "$tmp1" | gawk '{print $1}'`
 M=$((N % 4));
-printInfo "The function list contains $N functions"
 if [ "$M" == "0" ]; then                                                                                               
-    printInfo "Nothing to Add"
+    NOTHING=0
 fi
 if [ "$M" == "4" ]; then                                                                                               
-    printInfo "Adding 1 functions"
+    printAdvice "Adding 1 functions"
     echo "zzzone()" >> "$tmp1"
 fi
 if [ "$M" == "3" ]; then                                                                                               
-    printInfo "Adding 2 functions"
+    printAdvice "Adding 2 functions"
     echo "zzzone()" >> "$tmp1"
     echo "zzztwo()" >> "$tmp1"
 fi
 if [ "$M" == "2" ]; then                                                                                               
-    printInfo "Adding 3 functions"
+    printAdvice "Adding 3 functions"
     echo "zzzone()" >> "$tmp1"
     echo "zzztwo()" >> "$tmp1"
     echo "zzzthree()" >> "$tmp1"
 fi
 if [ "$M" == "1" ]; then                                                                                               
-    printInfo "Adding 4 functions"
+    printAdvice "Adding 4 functions"
     echo "zzzone()" >> "$tmp1"
     echo "zzztwo()" >> "$tmp1"
     echo "zzzthree()" >> "$tmp1"
@@ -52,7 +51,6 @@ fi
 
 cat "$tmp1" | sort | uniq > "$tmp2"; cp "$tmp2" "$tmp1"
 N=`wc -l "$tmp1" | gawk '{print $1}'`
-printInfo "The function list contains $N functions"
 N=$((N / 5));
 rm -f sfa*  >/dev/null 2>&1
 sed -i 's/zzz.*$/\&nbsp;/g' "$tmp1"
