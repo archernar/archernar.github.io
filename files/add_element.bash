@@ -7,7 +7,7 @@ function add_element() {
   fi
 
   my_array+=("$element_to_add")
-  if [[ ${#my_array[@]} -gt  $(TROWS -8) ]]; then
+  if [[ ${#my_array[@]} -gt  $(TROWS -3) ]]; then
     my_array=("${my_array[@]:1}")
   fi
   #sleep 0.05
